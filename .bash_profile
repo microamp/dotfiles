@@ -1,5 +1,1 @@
-#
-# ~/.bash_profile
-#
-
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+/home/microamp/.bash_profile

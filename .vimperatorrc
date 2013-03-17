@@ -1,11 +1,1 @@
-set hintchars=asdfghjklerut
-
-noremap j 4j
-noremap k 4k
-noremap <C-e> 4<C-e>
-noremap <C-y> 4<C-y>
-
-map t :tabnew <CR> <F6>
-map J :tabnext <CR>
-map K :tabprevious <CR>
-map x :q <CR>
+/home/microamp/.vimperatorrc
