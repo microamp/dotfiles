@@ -152,16 +152,15 @@ bar {
     workspace_buttons yes
     tray_output       none
     
-#    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
     font -xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso10646-1
 
     colors {
-        background #000000
-        statusline #ffffff
+        background #1f1f1f
+        statusline #f0dfaf
 
-        focused_workspace  #ffffff #285577
-        active_workspace   #ffffff #333333
+        focused_workspace  #1f1f1f #9ece9e
+        active_workspace   #f0dfaf #333333
         inactive_workspace #888888 #222222
-        urgent_workspace   #ffffff #900000
+        urgent_workspace   #f0dfaf #900000
     }
 }
