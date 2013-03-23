@@ -9,6 +9,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -60,10 +61,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-#bindsym $mod+h split h
+bindsym $alt+l split h
 
 # split in vertical orientation
-#bindsym $mod+v split v
+bindsym $alt+j split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
