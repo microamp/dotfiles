@@ -28,7 +28,7 @@ xset dpms 0 0 300
 # powerdown: automatic load
 upower -e
 
-xcompmgr -c &
+#xcompmgr -c &
 
 sh ~/.fehbg &
 

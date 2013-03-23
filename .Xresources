@@ -6,11 +6,11 @@ URxvt.font: -xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso10646-1
 
 !True transparency
 URxvt.urgentOnBell: true
-URxvt.depth: 32
-!URxvt.background: [95]#1c1c1c
-URxvt.background: [85]#1f1f1f
-!URxvt.foreground: [95]#d7d7d7
-URxvt.foreground: [95]#dcdccc
+!URxvt.depth: 32
+!URxvt.background: [85]#1f1f1f
+!URxvt.foreground: [85]#dcdccc
+URxvt.transparent: true
+URxvt.shading: 50
 
 !Scrollbar
 URxvt.scrollBar: false
@@ -68,8 +68,8 @@ URxvt.url-select.underline: true
 #define _colorIT       #80d4aa
 
 !TXT Normal, Normal, Cursor
-#define _foreground    #dcdccc
-#define _background    #1f1f1f
+#define _foreground    [85]#dcdccc
+#define _background    [85]#1f1f1f
 #define _cursorColor   #8faf9f
 
 URxvt*color0         : _color0
