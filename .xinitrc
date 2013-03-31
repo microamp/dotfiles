@@ -13,6 +13,8 @@ fi
 
 setxkbmap -option "ctrl:nocaps"
 
+xinput --set-prop "SynPS/2 Synaptics TouchPad" "Device Enabled" 0
+
 xset +fp /usr/share/fonts/local
 xset fp rehash
 xset b off
@@ -36,4 +38,5 @@ sh ~/.fehbg &
 # exec startkde
 # exec startxfce4
 # ...or the Window Manager of your choice
-exec i3 -V >> ~/.i3/i3log 2>&1
+#exec i3 -V >> ~/.i3/i3log 2>&1
+exec i3
