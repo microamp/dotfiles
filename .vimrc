@@ -1,6 +1,9 @@
 " Colourscheme
 color zenburn
 
+let g:zenburn_old_Visual = 1
+let g:zenburn_alternate_Visual = 1
+
 " Basic settings
 set number
 set cul
@@ -66,5 +69,6 @@ nmap <F8> :TagbarToggle<CR>
 " Gundo settings (requires Vim compiled with Python support)
 nnoremap <F5> :GundoToggle<CR>
 
-" Highlight colours
-hi Search ctermbg=9 ctermfg=0
+hi TabLineFill ctermbg=LightGreen ctermfg=DarkGreen
+hi TabLine ctermbg=DarkGreen ctermfg=Yellow
+hi TabLineSel ctermbg=Red ctermfg=Yellow
