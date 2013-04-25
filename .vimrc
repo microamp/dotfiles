@@ -69,6 +69,8 @@ nmap <F8> :TagbarToggle<CR>
 " Gundo settings (requires Vim compiled with Python support)
 nnoremap <F5> :GundoToggle<CR>
 
+hi Search ctermbg=9 ctermfg=0
+
 hi TabLineFill ctermbg=LightGreen ctermfg=DarkGreen
 hi TabLine ctermbg=DarkGreen ctermfg=Yellow
 hi TabLineSel ctermbg=Red ctermfg=Yellow
