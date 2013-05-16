@@ -165,3 +165,5 @@ bar {
         urgent_workspace   #f0dfaf #900000
     }
 }
+
+client.focused = #5d7f8c #dcdccc #8cd0d3
