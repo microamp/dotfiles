@@ -6,16 +6,16 @@ URxvt.font: -xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso10646-1
 
 !True transparency
 URxvt.urgentOnBell: true
-!URxvt.depth: 32
+URxvt*depth: 32
 !URxvt.background: [85]#1f1f1f
 !URxvt.foreground: [85]#dcdccc
-URxvt.transparent: true
-URxvt.shading: 50
+!URxvt.transparent: true
+!URxvt.shading: 50
 
 !Scrollbar
 URxvt.scrollBar: false
 
-!Clikable URLs
+!Clickable URLs
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/firefox
 URxvt.matcher.button: 1
