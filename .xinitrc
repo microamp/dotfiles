@@ -16,6 +16,8 @@ xrdb -merge ~/.Xresources
 #xcompmgr -c &
 compton &
 
+urxvtd -q -o -f  # urxvt daemon for session use
+
 sh ~/.fehbg &
 
 export EDITOR=vim
