@@ -38,6 +38,7 @@ inoremap <Tab> <Esc>"^
 inoremap <Leader><Tab> <Tab>
 
 " Tab settings
+nnoremap JL J
 set tabpagemax=10
 map t :tabnew<CR>
 map J :tabnext<CR>
@@ -72,5 +73,5 @@ nnoremap <F5> :GundoToggle<CR>
 hi Search ctermbg=9 ctermfg=0
 
 hi TabLineFill ctermbg=LightGreen ctermfg=DarkGreen
-hi TabLine ctermbg=DarkGreen ctermfg=Yellow
-hi TabLineSel ctermbg=Red ctermfg=Yellow
+hi TabLine ctermbg=DarkGreen ctermfg=Black
+hi TabLineSel ctermbg=Red ctermfg=Black
