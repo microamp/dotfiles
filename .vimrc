@@ -38,7 +38,6 @@ inoremap <Tab> <Esc>"^
 inoremap <Leader><Tab> <Tab>
 
 " Tab settings
-nnoremap JL J
 set tabpagemax=10
 map t :tabnew<CR>
 map J :tabnext<CR>
