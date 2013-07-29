@@ -9,3 +9,7 @@ map t :tabnew <CR> <F6>
 map J :tabnext <CR>
 map K :tabprevious <CR>
 map x :q <CR>
+
+noremap <C-f> 4j
+noremap <C-b> 4k
+noremap <C-v> <C-d>
