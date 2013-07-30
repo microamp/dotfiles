@@ -17,3 +17,5 @@ noremap <C-v> <C-d>
 noremap <A-v> <C-u>
 noremap <C-f> :tabnext <CR>
 noremap <C-b> :tabprevious <CR>
+noremap <A-<> gg
+noremap <A->> G
