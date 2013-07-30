@@ -10,6 +10,10 @@ map J :tabnext <CR>
 map K :tabprevious <CR>
 map x :q <CR>
 
-noremap <C-f> 4j
-noremap <C-b> 4k
+# emacs-compatible keybindings
+noremap <C-n> 4j
+noremap <C-p> 4k
 noremap <C-v> <C-d>
+noremap <A-v> <C-u>
+noremap <C-f> :tabnext <CR>
+noremap <C-b> :tabprevious <CR>
