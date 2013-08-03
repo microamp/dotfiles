@@ -1,6 +1,10 @@
 (menu-bar-mode -1)  ;; hide menu bar
 (tool-bar-mode -1)  ;; hide tool bar
 
+;; disable automatic scrolling/re-centering
+(setq scroll-step 1
+      scroll-margin 0)
+
 ;; turn on font-lock mode to colour text in certain modes
 (global-font-lock-mode t)
 
@@ -18,8 +22,7 @@
 ;; erc
 (require 'erc)
 (erc-scrolltobottom-mode t)
-(erc-update-modules)
-(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
+;;(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
 
 ;; fill-column-indicator
 (add-to-list 'load-path "/home/microamp/.emacs.d/fill-column-indicator/")
