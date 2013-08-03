@@ -17,7 +17,9 @@
 
 ;; erc
 (require 'erc)
-;;(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
+(erc-scrolltobottom-mode t)
+(erc-update-modules)
+(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
 
 ;; fill-column-indicator
 (add-to-list 'load-path "/home/microamp/.emacs.d/fill-column-indicator/")
