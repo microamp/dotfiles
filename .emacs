@@ -11,21 +11,26 @@
 ;; make sure spaces are used when indenting code
 (setq-default indent-tabs-mode nil)
 
-;; zenburn colour theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'zenburn t)
+;; colour theme
+(load-file "~/.emacs.d/themes/zenburn.el/zenburn.el")
+(zenburn)
 
 ;; highlight current line
 (global-hl-line-mode t)
-(set-face-background 'hl-line "gray25")
+
+;; colours
+(custom-set-faces
+ '(hl-line ((t (:background "gray25"))))
+ '(linum ((t (:background "dim grey" :foreground "green"))))
+)
 
 ;; erc
 (require 'erc)
-(erc-scrolltobottom-mode t)
+(erc-scrolltobottom-mode)
 ;;(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
 
 ;; fill-column-indicator
-(add-to-list 'load-path "~/.emacs.d/fill-column-indicator/")
+(add-to-list 'load-path "~/.emacs.d/Fill-Column-Indicator/")
 (require 'fill-column-indicator)
 (setq-default fci-rule-column 80)
 (setq-default fci-rule-color "yellow")
