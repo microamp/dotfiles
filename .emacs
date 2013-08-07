@@ -36,12 +36,6 @@
 (erc-scrolltobottom-mode)
 ;;(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
 
-;; bash-completion
-(add-to-list 'load-path "~/.emacs.d/elpa/shell-command-20090621.1332/")
-(add-to-list 'load-path "~/.emacs.d/elpa/bash-completion-20130526.544/")
-(require 'bash-completion)
-(bash-completion-setup)
-
 ;; fill-column-indicator
 (add-to-list 'load-path "~/.emacs.d/elpa/fill-column-indicator-20130126.1540/")
 (require 'fill-column-indicator)
@@ -70,3 +64,5 @@
 (add-hook 'python-mode-hook 'fci-mode)
 (add-hook 'python-mode-hook 'linum-mode)
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+(add-hook 'python-mode-hook
+          '(lambda () (define-key python-mode-map "\C-m" 'newline-and-indent)))
