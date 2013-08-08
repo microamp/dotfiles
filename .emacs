@@ -39,7 +39,7 @@
 ;; fill-column-indicator
 (add-to-list 'load-path "~/.emacs.d/elpa/fill-column-indicator-20130126.1540/")
 (require 'fill-column-indicator)
-(setq-default fci-rule-column 80)
+(setq-default fci-rule-column 79)
 (setq-default fci-rule-color "yellow")
 
 ;; ido
@@ -59,6 +59,9 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/flymake-python-pyflakes-20130730.131/")
 (require 'flymake-python-pyflakes)
 (setq flymake-python-pyflakes-executable "flake8")
+
+;; ipython
+(setq py-shell-name "ipython")
 
 ;; mode-specific hooks
 (add-hook 'python-mode-hook 'fci-mode)
