@@ -21,12 +21,14 @@
 ;; colours
 (custom-set-faces
  '(hl-line ((t (:background "gray25"))))
- '(linum ((t (:background "gray20" :foreground "yellow"))))
+ '(linum ((t (:background "black" :foreground "gray50"))))
 )
 
 ;; colour theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/zenburn-theme-20130716.1457/")
 (load-theme 'zenburn t)
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/nzenburn-theme-20130513/")
+;;(load-theme 'nzenburn t)
 
 ;; highlight current line
 (global-hl-line-mode t)
@@ -41,7 +43,7 @@
 (require 'fill-column-indicator)
 (setq-default fci-rule-column 79)
 (setq-default fci-rule-color "yellow")
-
+    
 ;; ido
 (require 'ido)
 (ido-mode t)
@@ -64,8 +66,13 @@
 (setq py-shell-name "ipython")
 
 ;; mode-specific hooks
+;; python
 (add-hook 'python-mode-hook 'fci-mode)
 (add-hook 'python-mode-hook 'linum-mode)
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 (add-hook 'python-mode-hook
           '(lambda () (define-key python-mode-map "\C-m" 'newline-and-indent)))
+;; html
+(add-hook 'html-mode-hook 'linum-mode)
+(add-hook 'html-mode-hook
+          '(lambda () (define-key html-mode-map "\C-m" 'newline-and-indent)))
