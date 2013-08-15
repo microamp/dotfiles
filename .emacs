@@ -18,6 +18,9 @@
 ;; make sure spaces are used when indenting code
 (setq-default indent-tabs-mode nil)
 
+;; remove trailising whitespace
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; map RET to newline-and-indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
