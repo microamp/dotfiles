@@ -18,11 +18,15 @@
 ;; make sure spaces are used when indenting code
 (setq-default indent-tabs-mode nil)
 
-;; remove trailising whitespace
+;; remove trailing whitespace
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; map RET to newline-and-indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; hide password in shell mode
+(add-hook 'comint-output-filter-functions
+          'comint-watch-for-password-prompt)
 
 ;; colours
 (custom-set-faces
@@ -49,7 +53,7 @@
 (require 'fill-column-indicator)
 (setq-default fci-rule-column 79)
 (setq-default fci-rule-color "yellow")
-    
+
 ;; ido
 (require 'ido)
 (ido-mode t)
@@ -70,6 +74,15 @@
 
 ;; ipython
 (setq py-shell-name "ipython")
+
+;; jedi (auto-completion)
+(add-to-list 'load-path "~/.emacs.d/elpa/epc-20130804.1428/")
+(add-to-list 'load-path "~/.emacs.d/elpa/deferred-20130523.1007/")
+(add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-20130724.1750/")
+(add-to-list 'load-path "~/.emacs.d/elpa/jedi-20130714.1415/")
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:setup-keys t)
+(setq jedi:complete-on-dot t)
 
 ;; mode-specific hooks
 ;; python
