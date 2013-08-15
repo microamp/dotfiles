@@ -18,6 +18,9 @@
 ;; make sure spaces are used when indenting code
 (setq-default indent-tabs-mode nil)
 
+;; map RET to newline-and-indent
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
 ;; colours
 (custom-set-faces
  '(hl-line ((t (:background "gray25"))))
@@ -70,9 +73,3 @@
 (add-hook 'python-mode-hook 'fci-mode)
 (add-hook 'python-mode-hook 'linum-mode)
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
-(add-hook 'python-mode-hook
-          '(lambda () (define-key python-mode-map "\C-m" 'newline-and-indent)))
-;; html
-(add-hook 'html-mode-hook 'linum-mode)
-(add-hook 'html-mode-hook
-          '(lambda () (define-key html-mode-map "\C-m" 'newline-and-indent)))
