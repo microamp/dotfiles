@@ -37,11 +37,15 @@
 ;; colour theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/zenburn-theme-20130716.1457/")
 (load-theme 'zenburn t)
-;;(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/nzenburn-theme-20130513/")
-;;(load-theme 'nzenburn t)
 
 ;; highlight current line
 (global-hl-line-mode t)
+
+;; highlight parentheses
+(add-to-list 'load-path "~/.emacs.d/elpa/highlight-parentheses-20130523.1752/")
+(require 'highlight-parentheses)
+(add-hook 'python-mode-hook 'highlight-parentheses-mode)
+(add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
 
 ;; erc
 (require 'erc)
@@ -53,6 +57,7 @@
 (require 'fill-column-indicator)
 (setq-default fci-rule-column 79)
 (setq-default fci-rule-color "yellow")
+(add-hook 'python-mode-hook 'fci-mode)
 
 ;; ido
 (require 'ido)
@@ -71,6 +76,7 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/flymake-python-pyflakes-20130730.131/")
 (require 'flymake-python-pyflakes)
 (setq flymake-python-pyflakes-executable "flake8")
+(add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 
 ;; ipython
 (setq py-shell-name "ipython")
@@ -84,8 +90,6 @@
 (setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
 
-;; mode-specific hooks
+;; other mode-specific hooks
 ;; python
-(add-hook 'python-mode-hook 'fci-mode)
 (add-hook 'python-mode-hook 'linum-mode)
-(add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
