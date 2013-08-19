@@ -42,14 +42,22 @@
 (global-hl-line-mode t)
 
 ;; highlight parentheses
-(add-to-list 'load-path "~/.emacs.d/elpa/highlight-parentheses-20130523.1752/")
-(require 'highlight-parentheses)
-(add-hook 'python-mode-hook 'highlight-parentheses-mode)
-(add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
+;;(add-to-list 'load-path "~/.emacs.d/elpa/highlight-parentheses-20130523.1752/")
+;;(require 'highlight-parentheses)
+;;(add-hook 'python-mode-hook 'highlight-parentheses-mode)
+;;(add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
+
+;; rainbow-delimiters
+(add-to-list 'load-path "~/.emacs.d/elpa/rainbow-delimiters-20130307.340/")
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode)
 
 ;; erc
 (require 'erc)
 (erc-scrolltobottom-mode)
+(add-to-list 'load-path "/home/microamp/.emacs.d/elpa/erc-hl-nicks-20130114.1648/")
+(require 'erc-hl-nicks)
+(erc-hl-nicks-enable)
 ;;(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
 
 ;; fill-column-indicator
