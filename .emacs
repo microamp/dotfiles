@@ -24,6 +24,20 @@
 ;; map RET to newline-and-indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
+;; map M-N to other-window
+(define-key global-map (kbd "M-N") 'other-window)
+(define-key global-map (kbd "M-P") 'previous-multiframe-window)
+
+;; focus the new window after split
+(global-set-key "\C-x2" (lambda ()
+                          (interactive)
+                          (split-window-right)
+                          (other-window 1)))
+(global-set-key "\C-x3" (lambda ()
+                          (interactive)
+                          (split-window-below)
+                          (other-window 1)))
+
 ;; hide password in shell mode
 (add-hook 'comint-output-filter-functions
           'comint-watch-for-password-prompt)
@@ -40,12 +54,6 @@
 
 ;; highlight current line
 (global-hl-line-mode t)
-
-;; highlight parentheses
-;;(add-to-list 'load-path "~/.emacs.d/elpa/highlight-parentheses-20130523.1752/")
-;;(require 'highlight-parentheses)
-;;(add-hook 'python-mode-hook 'highlight-parentheses-mode)
-;;(add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
 
 ;; rainbow-delimiters
 (add-to-list 'load-path "~/.emacs.d/elpa/rainbow-delimiters-20130307.340/")
