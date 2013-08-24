@@ -60,6 +60,15 @@
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)
 
+;; highlight-parentheses
+(add-to-list 'load-path "~/.emacs.d/elpa/highlight-parentheses-20130523.1752/")
+(require 'highlight-parentheses)
+(define-globalized-minor-mode global-highlight-parentheses-mode
+  highlight-parentheses-mode
+  (lambda ()
+    (highlight-parentheses-mode t)))
+(global-highlight-parentheses-mode t)
+
 ;; erc
 (require 'erc)
 (erc-scrolltobottom-mode)
@@ -76,7 +85,7 @@
                     (set-buffer buffer)
                     (when (eq major-mode 'erc-mode)
                       (setq erc-fill-column (- (window-width w) 2)))))))))
-(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
+;;(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
 
 ;; erc: highlight nicks
 (add-to-list 'load-path "/home/microamp/.emacs.d/elpa/erc-hl-nicks-20130114.1648/")
