@@ -31,11 +31,11 @@
 ;; focus the new window after split
 (global-set-key "\C-x2" (lambda ()
                           (interactive)
-                          (split-window-right)
+                          (split-window-below)
                           (other-window 1)))
 (global-set-key "\C-x3" (lambda ()
                           (interactive)
-                          (split-window-below)
+                          (split-window-right)
                           (other-window 1)))
 
 ;; hide password in shell mode
@@ -63,10 +63,25 @@
 ;; erc
 (require 'erc)
 (erc-scrolltobottom-mode)
+(setq erc-timestamp-format-left nil)
+(setq erc-timestamp-format-right "[%H:%M]")
+;; column length depending on window size
+(make-variable-buffer-local 'erc-fill-colnumn)
+(add-hook 'window-configuration-change-hook
+          '(lambda ()
+             (save-excursion
+               (walk-windows
+                (lambda (w)
+                  (let ((buffer (window-buffer w)))
+                    (set-buffer buffer)
+                    (when (eq major-mode 'erc-mode)
+                      (setq erc-fill-column (- (window-width w) 2)))))))))
+(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
+
+;; erc: highlight nicks
 (add-to-list 'load-path "/home/microamp/.emacs.d/elpa/erc-hl-nicks-20130114.1648/")
 (require 'erc-hl-nicks)
 (erc-hl-nicks-enable)
-;;(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
 
 ;; fill-column-indicator
 (add-to-list 'load-path "~/.emacs.d/elpa/fill-column-indicator-20130126.1540/")
