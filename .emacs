@@ -75,7 +75,7 @@
 (setq erc-timestamp-format-left nil)
 (setq erc-timestamp-format-right "[%H:%M]")
 ;; column length depending on window size
-(make-variable-buffer-local 'erc-fill-colnumn)
+(make-variable-buffer-local 'erc-fill-column)
 (add-hook 'window-configuration-change-hook
           '(lambda ()
              (save-excursion
