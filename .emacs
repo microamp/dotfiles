@@ -104,9 +104,12 @@
 (ido-mode t)
 
 ;; autopair
-(add-to-list 'load-path "~/.emacs.d/elpa/autopair-20121123.1829/")
-(require 'autopair)
-(autopair-global-mode)
+;;(add-to-list 'load-path "~/.emacs.d/elpa/autopair-20121123.1829/")
+;;(require 'autopair)
+;;(autopair-global-mode)
+
+;; electric-pair-mode
+(electric-pair-mode t)
 
 ;; flymake-python-pyflakes
 (add-to-list 'load-path "~/.emacs.d/elpa/flymake-cursor-20121220.957/")
