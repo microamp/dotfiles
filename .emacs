@@ -88,7 +88,7 @@
 ;;(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
 
 ;; erc: highlight nicks
-(add-to-list 'load-path "/home/microamp/.emacs.d/elpa/erc-hl-nicks-20130114.1648/")
+(add-to-list 'load-path "~/.emacs.d/elpa/erc-hl-nicks-20130114.1648/")
 (require 'erc-hl-nicks)
 (erc-hl-nicks-enable)
 
@@ -103,14 +103,6 @@
 (require 'ido)
 (ido-mode t)
 
-;; autopair
-;;(add-to-list 'load-path "~/.emacs.d/elpa/autopair-20121123.1829/")
-;;(require 'autopair)
-;;(autopair-global-mode)
-
-;; electric-pair-mode
-(electric-pair-mode t)
-
 ;; flymake-python-pyflakes
 (add-to-list 'load-path "~/.emacs.d/elpa/flymake-cursor-20121220.957/")
 (add-to-list 'load-path "~/.emacs.d/elpa/flymake-easy-20130610.1705/")
@@ -121,9 +113,6 @@
 (setq flymake-python-pyflakes-executable "flake8")
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 
-;; ipython
-(setq py-shell-name "ipython")
-
 ;; jedi (auto-completion)
 (add-to-list 'load-path "~/.emacs.d/elpa/epc-20130804.1428/")
 (add-to-list 'load-path "~/.emacs.d/elpa/deferred-20130523.1007/")
@@ -133,6 +122,19 @@
 (setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
 
-;; other mode-specific hooks
-;; python
+;; other python hooks
 (add-hook 'python-mode-hook 'linum-mode)
+(add-hook 'python-mode-hook 'electric-pair-mode)
+
+;; paredit
+(add-to-list 'load-path "~/.emacs.d/elpa/paredit-20130722.1324/")
+(autoload 'enable-paredit-mode "paredit"
+  "Turn on pseudo-structural editing of Lisp code."
+  t)
+(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
+(add-hook 'ielm-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+(add-hook 'scheme-mode-hook 'enable-paredit-mode)
+(add-hook 'clojure-mode-hook 'enable-paredit-mode)
