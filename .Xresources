@@ -12,7 +12,10 @@ URxvt*depth: 32
 !URxvt.transparent: true
 !URxvt.shading: 50
 
-!Scrollbar
+!Alt-s (disable)
+URxvt.searchable-scrollback: CM-s
+
+!Scrollbar (disable)
 URxvt.scrollBar: false
 
 !Clickable URLs
@@ -69,7 +72,7 @@ URxvt.url-select.underline: true
 
 !TXT Normal, Normal, Cursor
 #define _foreground    [85]#dcdccc
-#define _background    [85]#1f1f1f
+#define _background    [75]#1f1f1f
 #define _cursorColor   #8faf9f
 
 URxvt*color0         : _color0
