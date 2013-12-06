@@ -126,6 +126,22 @@
 (add-hook 'python-mode-hook 'linum-mode)
 (add-hook 'python-mode-hook 'electric-pair-mode)
 
+;; s
+(add-to-list 'load-path "~/.emacs.d/elpa/s-20130820.1601")
+(require 's)
+
+;; clojure-mode
+(add-to-list 'load-path "~/.emacs.d/elpa/clojure-mode-20130911.542")
+(require 'clojure-mode)
+
+;; dash
+(add-to-list 'load-path "~/.emacs.d/elpa/dash-20130831.2329")
+(require 'dash)
+
+;; pkg-info
+(add-to-list 'load-path "~/.emacs.d/elpa/pkg-info-20130817.2334")
+(require 'pkg-info)
+
 ;; paredit
 (add-to-list 'load-path "~/.emacs.d/elpa/paredit-20130722.1324/")
 (autoload 'enable-paredit-mode "paredit"
@@ -138,3 +154,22 @@
 (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
 (add-hook 'scheme-mode-hook 'enable-paredit-mode)
 (add-hook 'clojure-mode-hook 'enable-paredit-mode)
+
+;; cider
+(add-to-list 'load-path "~/.emacs.d/elpa/cider-20131204.1757")
+(require 'cider)
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+(setq nrepl-hide-special-buffers t)
+(setq cider-repl-tab-command 'indent-for-tab-command)
+(setq cider-repl-pop-to-buffer-on-connect nil)
+(setq cider-popup-stacktraces nil)
+(setq cider-repl-popup-stacktraces t)
+(setq cider-auto-select-error-buffer t)
+(setq nrepl-buffer-name-separator "-")
+(setq nrepl-buffer-name-show-port t)
+(setq cider-repl-display-in-current-window t)
+(setq cider-repl-wrap-history t)
+(setq cider-repl-history-size 1000) ; the default is 500
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
+(add-hook 'nrepl-mode-hook 'paredit-mode)
+(add-hook 'cider-repl-mode-hook 'enable-paredit-mode)
