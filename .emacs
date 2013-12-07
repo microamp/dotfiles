@@ -42,6 +42,9 @@
 (add-hook 'comint-output-filter-functions
           'comint-watch-for-password-prompt)
 
+;; doc-view-mode: continuous navigation via C-n/C-p
+(setq-default doc-view-continuous 1)
+
 ;; colours
 (custom-set-faces
  '(hl-line ((t (:background "gray25"))))
@@ -85,7 +88,7 @@
                     (set-buffer buffer)
                     (when (eq major-mode 'erc-mode)
                       (setq erc-fill-column (- (window-width w) 2)))))))))
-;;(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
+(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
 
 ;; erc: highlight nicks
 (add-to-list 'load-path "~/.emacs.d/elpa/erc-hl-nicks-20130114.1648/")
