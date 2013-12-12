@@ -20,7 +20,7 @@ urxvtd -q -o -f  # urxvt daemon for session use
 
 sh ~/.fehbg &
 
-export EDITOR=vim
+export EDITOR=emacs
 
 # map caps to ctrl
 setxkbmap -option "ctrl:nocaps"
@@ -40,10 +40,3 @@ xset dpms 0 0 300
 
 # powerdown: automatic load
 upower -e
-
-# exec gnome-session
-# exec startkde
-# exec startxfce4
-# ...or the Window Manager of your choice
-#exec i3 -V >> ~/.i3/i3log 2>&1
-exec i3
