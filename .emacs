@@ -157,6 +157,7 @@
 (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
 (add-hook 'scheme-mode-hook 'enable-paredit-mode)
 (add-hook 'clojure-mode-hook 'enable-paredit-mode)
+(add-hook 'hy-mode-hook 'enable-paredit-mode)
 
 ;; cider
 (add-to-list 'load-path "~/.emacs.d/elpa/cider-20131204.1757")
