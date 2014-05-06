@@ -14,7 +14,7 @@ fi
 xrdb -merge ~/.Xresources
 
 #xcompmgr -c &
-compton &
+#compton &
 
 urxvtd -q -o -f  # urxvt daemon for session use
 
@@ -23,7 +23,7 @@ sh ~/.fehbg &
 export EDITOR=emacs
 
 # map caps to ctrl
-setxkbmap -option "ctrl:nocaps"
+setxkbmap -option "ctrl:nocaps, ctrl:rctrl_ralt"
 # swap pgup and pddn around
 xmodmap -e "keycode 112 = Next"
 xmodmap -e "keycode 117 = Prior"
