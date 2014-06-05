@@ -22,12 +22,13 @@ sh ~/.fehbg &
 
 export EDITOR=emacs
 
-# map caps to ctrl
-setxkbmap -option "ctrl:nocaps, ctrl:rctrl_ralt"
-# swap pgup and pddn around
+# map caps to ctrl, rctrl to ralt (thinkpad x230), rwin to alt (filco)
+setxkbmap -option "ctrl:nocaps, ctrl:rctrl_ralt, altwin:alt_super_win"
+
+# thinkpad x230: swap pgup and pddn around
 xmodmap -e "keycode 112 = Next"
 xmodmap -e "keycode 117 = Prior"
-# disable touchpad
+# thinkpad x230: disable touchpad
 xinput --set-prop "SynPS/2 Synaptics TouchPad" "Device Enabled" 0
 
 xset +fp /usr/share/fonts/local
