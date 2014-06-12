@@ -47,12 +47,15 @@
 
 ;; colours
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(hl-line ((t (:background "gray25"))))
- '(linum ((t (:background "black" :foreground "gray50"))))
-)
+ '(linum ((t (:background "black" :foreground "gray50")))))
 
 ;; colour theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/zenburn-theme-20130716.1457/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/zenburn-theme-20140309.2358/")
 (load-theme 'zenburn t)
 
 ;; highlight current line
@@ -72,7 +75,7 @@
     (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
 
-;; erc
+;; erc settings
 (require 'erc)
 (erc-scrolltobottom-mode)
 (setq erc-timestamp-format-left nil)
@@ -88,12 +91,28 @@
                     (set-buffer buffer)
                     (when (eq major-mode 'erc-mode)
                       (setq erc-fill-column (- (window-width w) 2)))))))))
-(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
 
 ;; erc: highlight nicks
 (add-to-list 'load-path "~/.emacs.d/elpa/erc-hl-nicks-20130114.1648/")
 (require 'erc-hl-nicks)
 (erc-hl-nicks-enable)
+
+;; connect via erc
+;(erc :server "chat.freenode.net" :port 8002 :nick "microamp")
+
+;; rcirc settings
+(setq rcirc-server-alist
+      '(("chat.freenode.net"
+         :port 8002
+         :nick "microamp"
+         :channels ("#emacs"))))
+
+;; rcirc coloured nicks
+(add-to-list 'load-path "~/.emacs.d/elpa/rcirc-color-20140131.656/")
+(eval-after-load 'rcirc '(require 'rcirc-color))
+
+;; connect via rcirc
+(rcirc nil)
 
 ;; fill-column-indicator
 (add-to-list 'load-path "~/.emacs.d/elpa/fill-column-indicator-20130126.1540/")
