@@ -105,9 +105,32 @@
       '(("chat.freenode.net"
          :port 8002
          :nick "microamp"
-         :channels ("#emacs"))))
+         :channels ("#emacs #clojure #hy"))))
 
-;; rcirc coloured nicks
+;; don't print /away messages
+(defun rcirc-handler-301 (process cmd sender args)
+  "/away message handler.")
+
+;; keep input line at bottom
+(add-hook 'rcirc-mode-hook
+          (lambda ()
+            (set (make-local-variable 'scroll-conservatively)
+                 8192)))
+
+;; adjust the colours of one of the faces.
+(set-face-foreground 'rcirc-my-nick "red" nil)
+
+;; use the maximum frame width for line-wrapping
+(setq rcirc-fill-column (quote frame-width))
+
+;; include date in time stamp.
+(setq rcirc-time-format "[%Y-%m-%d %H:%M] ")
+
+;; set colours
+(setq rcirc-colors '("red" "green" "yellow" "blue" "magenta" "cyan" "white"
+                     "color-81" "color-109" "color-172" "color-220"))
+
+;; set coloured nicks
 (add-to-list 'load-path "~/.emacs.d/elpa/rcirc-color-20140131.656/")
 (eval-after-load 'rcirc '(require 'rcirc-color))
 
