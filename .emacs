@@ -134,8 +134,11 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/rcirc-color-20140131.656/")
 (eval-after-load 'rcirc '(require 'rcirc-color))
 
+(add-to-list 'load-path "~/.emacs.d/elpa/rcirc-notify-20130905.203/")
+(eval-after-load 'rcirc '(require 'rcirc-notify))
+
 ;; connect via rcirc
-(rcirc nil)
+;;(rcirc nil)
 
 ;; fill-column-indicator
 (add-to-list 'load-path "~/.emacs.d/elpa/fill-column-indicator-20130126.1540/")
