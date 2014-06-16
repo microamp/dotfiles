@@ -137,6 +137,9 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/rcirc-notify-20130905.203/")
 (eval-after-load 'rcirc '(require 'rcirc-notify))
 
+;; turn on notification tracking
+(rcirc-track-minor-mode 1)
+
 ;; connect via rcirc
 ;;(rcirc nil)
 
