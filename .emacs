@@ -155,9 +155,6 @@
             (set (make-local-variable 'scroll-conservatively)
                  8192)))
 
-;; adjust the colours of one of the faces.
-(set-face-foreground 'rcirc-my-nick "red" nil)
-
 ;; use the maximum frame width for line-wrapping
 (setq rcirc-fill-column (quote frame-width))
 
@@ -214,11 +211,8 @@
 
 ;; jedi (auto-completion)
 (require 'jedi)
-
 (setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
-
-;; other python hooks
 
 ;; s
 (require 's)
