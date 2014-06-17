@@ -1,12 +1,58 @@
-(menu-bar-mode -1)  ;; hide menu bar
-(tool-bar-mode -1)  ;; hide tool bar
-
 ;; packages
 (require 'package)
+(package-initialize)
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
         ("marmalade" . "http://marmalade-repo.org/packages/")
         ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+(require 'cl)
+(defvar packages-list
+  '(rainbow-delimiters
+    zenburn-theme
+    highlight-parentheses
+    erc-hl-nicks
+    rcirc-color
+    rcirc-notify
+    fill-column-indicator
+    mew
+    flymake-cursor
+    flymake-easy
+    flymake-python-pyflakes
+    epc
+    deferred
+    auto-complete
+    jedi
+    s
+    clojure-mode
+    dash
+    pkg-info
+    paredit
+    multi-eshell
+    cider
+    w3m
+    starter-kit
+    starter-kit-eshell
+    starter-kit-lisp)
+  "List of packages needs to be installed at launch")
+
+(defun has-package-not-installed ()
+  (loop for p in packages-list
+        when (not (package-installed-p p)) do (return t)
+        finally (return nil)))
+
+(when (has-package-not-installed)
+  ;; check for new packages (package versions)
+  (message "%s" "Checking package versions...")
+  (package-refresh-contents)
+  (message "%s" " done")
+  ;; install missing packages
+  (dolist (p packages-list)
+    (when (not (package-installed-p p))
+      (package-install p))))
+
+(menu-bar-mode -1)  ;; hide menu bar
+(tool-bar-mode -1)  ;; hide tool bar
 
 ;; disable automatic scrolling/re-centering
 (setq-default scroll-step 1
@@ -47,27 +93,20 @@
 
 ;; colours
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(hl-line ((t (:background "gray25"))))
  '(linum ((t (:background "black" :foreground "gray50")))))
 
 ;; colour theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/zenburn-theme-20140309.2358/")
 (load-theme 'zenburn t)
 
 ;; highlight current line
 (global-hl-line-mode t)
 
 ;; rainbow-delimiters
-(add-to-list 'load-path "~/.emacs.d/elpa/rainbow-delimiters-20130307.340/")
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)
 
 ;; highlight-parentheses
-(add-to-list 'load-path "~/.emacs.d/elpa/highlight-parentheses-20130523.1752/")
 (require 'highlight-parentheses)
 (define-globalized-minor-mode global-highlight-parentheses-mode
   highlight-parentheses-mode
@@ -93,7 +132,6 @@
                       (setq erc-fill-column (- (window-width w) 2)))))))))
 
 ;; erc: highlight nicks
-(add-to-list 'load-path "~/.emacs.d/elpa/erc-hl-nicks-20130114.1648/")
 (require 'erc-hl-nicks)
 (erc-hl-nicks-enable)
 
@@ -131,10 +169,8 @@
                      "color-81" "color-109" "color-172" "color-220"))
 
 ;; set coloured nicks
-(add-to-list 'load-path "~/.emacs.d/elpa/rcirc-color-20140131.656/")
 (eval-after-load 'rcirc '(require 'rcirc-color))
 
-(add-to-list 'load-path "~/.emacs.d/elpa/rcirc-notify-20130905.203/")
 (eval-after-load 'rcirc '(require 'rcirc-notify))
 
 ;; turn on notification tracking
@@ -163,73 +199,45 @@
       'mew-send-hook))
 
 ;; fill-column-indicator
-(add-to-list 'load-path "~/.emacs.d/elpa/fill-column-indicator-20130126.1540/")
 (require 'fill-column-indicator)
 (setq-default fci-rule-column 79)
 (setq-default fci-rule-color "yellow")
-(add-hook 'python-mode-hook 'fci-mode)
 
 ;; ido
 (require 'ido)
 (ido-mode t)
 
 ;; flymake-python-pyflakes
-(add-to-list 'load-path "~/.emacs.d/elpa/flymake-cursor-20121220.957/")
-(add-to-list 'load-path "~/.emacs.d/elpa/flymake-easy-20130610.1705/")
-(eval-after-load "flymake"
-  '(require 'flymake-cursor))
-(add-to-list 'load-path "~/.emacs.d/elpa/flymake-python-pyflakes-20130730.131/")
+(eval-after-load "flymake" '(require 'flymake-cursor))
 (require 'flymake-python-pyflakes)
 (setq flymake-python-pyflakes-executable "flake8")
-(add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 
 ;; jedi (auto-completion)
-(add-to-list 'load-path "~/.emacs.d/elpa/epc-20130804.1428/")
-(add-to-list 'load-path "~/.emacs.d/elpa/deferred-20130523.1007/")
-(add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-20130724.1750/")
-(add-to-list 'load-path "~/.emacs.d/elpa/jedi-20130714.1415/")
-(add-hook 'python-mode-hook 'jedi:setup)
+(require 'jedi)
+
 (setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
 
 ;; other python hooks
-(add-hook 'python-mode-hook 'linum-mode)
-(add-hook 'python-mode-hook 'electric-pair-mode)
 
 ;; s
-(add-to-list 'load-path "~/.emacs.d/elpa/s-20130820.1601")
 (require 's)
 
 ;; clojure-mode
-(add-to-list 'load-path "~/.emacs.d/elpa/clojure-mode-20130911.542")
 (require 'clojure-mode)
 
 ;; dash
-(add-to-list 'load-path "~/.emacs.d/elpa/dash-20130831.2329")
 (require 'dash)
 
 ;; pkg-info
-(add-to-list 'load-path "~/.emacs.d/elpa/pkg-info-20130817.2334")
 (require 'pkg-info)
 
 ;; paredit
-(add-to-list 'load-path "~/.emacs.d/elpa/paredit-20130722.1324/")
-(autoload 'enable-paredit-mode "paredit"
-  "Turn on pseudo-structural editing of Lisp code."
-  t)
-(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
-(add-hook 'ielm-mode-hook 'enable-paredit-mode)
-(add-hook 'lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
-(add-hook 'scheme-mode-hook 'enable-paredit-mode)
-(add-hook 'clojure-mode-hook 'enable-paredit-mode)
-(add-hook 'hy-mode-hook 'enable-paredit-mode)
+(require 'paredit)
+(autoload 'enable-paredit-mode "paredit" t)
 
 ;; cider
-(add-to-list 'load-path "~/.emacs.d/elpa/cider-20131204.1757")
 (require 'cider)
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 (setq nrepl-hide-special-buffers t)
 (setq cider-repl-tab-command 'indent-for-tab-command)
 (setq cider-repl-pop-to-buffer-on-connect nil)
@@ -241,6 +249,23 @@
 (setq cider-repl-display-in-current-window t)
 (setq cider-repl-wrap-history t)
 (setq cider-repl-history-size 1000) ; the default is 500
+
+;; paredit hooks for lisp
+(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
+(add-hook 'ielm-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+(add-hook 'scheme-mode-hook 'enable-paredit-mode)
+(add-hook 'clojure-mode-hook 'enable-paredit-mode)
+(add-hook 'hy-mode-hook 'enable-paredit-mode)
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'nrepl-mode-hook 'paredit-mode)
-(add-hook 'cider-repl-mode-hook 'enable-paredit-mode)
+
+;; python hooks
+(add-hook 'python-mode-hook 'fci-mode)
+(add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook 'linum-mode)
+(add-hook 'python-mode-hook 'electric-pair-mode)
