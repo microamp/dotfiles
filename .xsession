@@ -8,4 +8,6 @@
 
 /bin/bash --login -i ~/.xinitrc
 
+emacs --daemon
+
 exec i3
