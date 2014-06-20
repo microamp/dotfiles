@@ -28,9 +28,10 @@
     dash
     pkg-info
     paredit
-    multi-eshell
     cider
+    multi-eshell
     w3m
+    mpc
     starter-kit
     starter-kit-eshell
     starter-kit-lisp)
@@ -73,6 +74,9 @@
 ;; map M-N to other-window
 (define-key global-map (kbd "M-N") 'other-window)
 (define-key global-map (kbd "M-P") 'previous-multiframe-window)
+
+;; map C-x s to open (multi-)eshell
+(define-key global-map (kbd "C-x s") 'multi-eshell)
 
 ;; focus the new window after split
 (global-set-key "\C-x2" (lambda ()

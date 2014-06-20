@@ -16,11 +16,7 @@ xrdb -merge ~/.Xresources
 #xcompmgr -c &
 #compton &
 
-urxvtd -q -o -f  # urxvt daemon for session use
-
 sh ~/.fehbg &
-
-export EDITOR=emacs
 
 # map caps to ctrl, rctrl to ralt (thinkpad x230), rwin to alt (filco)
 setxkbmap -option "ctrl:nocaps, ctrl:rctrl_ralt, altwin:alt_super_win"
