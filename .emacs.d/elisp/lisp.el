@@ -1,0 +1,31 @@
+;; clojure/cider
+(require 'clojure-mode)
+(require 'cider)
+(setq nrepl-hide-special-buffers t)
+(setq nrepl-buffer-name-separator "-")
+(setq nrepl-buffer-name-show-port t)
+(setq cider-repl-tab-command 'indent-for-tab-command)
+(setq cider-repl-pop-to-buffer-on-connect nil)
+(setq cider-popup-stacktraces nil)
+(setq cider-repl-popup-stacktraces t)
+(setq cider-auto-select-error-buffer t)
+(setq cider-repl-display-in-current-window t)
+(setq cider-repl-wrap-history t)
+(setq cider-repl-history-size 1000) ; the default is 500
+
+;; paredit hooks for lisp
+(require 'paredit)
+(autoload 'enable-paredit-mode "paredit" t)
+(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
+(add-hook 'ielm-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+(add-hook 'scheme-mode-hook 'enable-paredit-mode)
+(add-hook 'clojure-mode-hook 'enable-paredit-mode)
+(add-hook 'hy-mode-hook 'enable-paredit-mode)
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
+(add-hook 'nrepl-mode-hook 'paredit-mode)
+
+(provide 'lisp)
