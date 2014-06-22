@@ -7,8 +7,9 @@
 
 ;; map C-x s to open (multi-)eshell
 (define-key global-map (kbd "C-x s") 'multi-eshell)
+(define-key global-map (kbd "M-SPC") 'multi-eshell-switch)
 
-;; focus the new window after split
+;; Focus the new window after split
 (global-set-key "\C-x2" (lambda ()
                           (interactive)
                           (split-window-below)

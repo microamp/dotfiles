@@ -8,34 +8,35 @@
 
 (require 'cl)
 (defvar packages-list
-  '(zenburn-theme
+  '(auto-complete
+    cider
+    clojure-mode
+    dash
+    deferred
     dired+
-    rainbow-delimiters
-    highlight-parentheses
+    epc
     erc-hl-nicks
-    rcirc-color
-    rcirc-notify
-    mew
     fill-column-indicator
     flymake-cursor
     flymake-easy
     flymake-python-pyflakes
-    epc
-    deferred
-    auto-complete
+    highlight-parentheses
     jedi
-    s
-    dash
-    pkg-info
-    clojure-mode
-    paredit
-    cider
-    multi-eshell
-    w3m
+    magit
+    mew
     mpc
+    multi-eshell
+    paredit
+    pkg-info
+    rainbow-delimiters
+    rcirc-color
+    rcirc-notify
+    s
     starter-kit
     starter-kit-eshell
-    starter-kit-lisp)
+    starter-kit-lisp
+    w3m
+    zenburn-theme)
   "List of packages needs to be upgraded/installed at launch")
 
 (defun has-package-not-installed ()
@@ -64,9 +65,9 @@
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
-;; browse url using firefox
+;; browse url using conkeror
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "firefox")
+      browse-url-generic-program "conkeror")
 
 ;; dired+ for reusing dired buffers
 (toggle-diredp-find-file-reuse-dir t)
