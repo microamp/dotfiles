@@ -134,7 +134,7 @@
                        (circe-w3-contrast-generate-contrast-color
                         (mapcar (lambda (x) (/ x 65535.0))
                                 (color-values (face-background 'default)))
-                        4))
+                        7))
                       colors)))
         colors))
 

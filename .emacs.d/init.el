@@ -1,5 +1,6 @@
 ;; packages
 (require 'package)
+
 (package-initialize)
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -9,8 +10,11 @@
 (require 'cl)
 (defvar packages-list
   '(auto-complete
+    bash-completion
     cider
     clojure-mode
+    color-theme
+    color-theme-buffer-local
     dash
     deferred
     dired+
@@ -21,13 +25,18 @@
     flymake-easy
     flymake-python-pyflakes
     highlight-parentheses
+    hy-mode
+    ido-load-library
     jedi
+    load-theme-buffer-local
     magit
     mew
+    monky
     mpc
     multi-eshell
     paredit
     pkg-info
+    python-mode
     rainbow-delimiters
     rcirc-color
     rcirc-notify
@@ -54,6 +63,9 @@
     (when (not (package-installed-p p))
       (package-install p))))
 
+(require 'ido)
+(require 'bash-completion)
+
 (setq emacs-dir "~/.emacs.d")
 (setq custom-lib-dir "elisp")
 
@@ -64,6 +76,9 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
+
+;; turn on auto completion for bash
+(bash-completion-setup)
 
 ;; browse url using conkeror
 (setq browse-url-browser-function 'browse-url-generic
@@ -77,7 +92,7 @@
               scroll-margin 0)
 
 ;; turn on font-lock mode to colour text in certain modes
-(global-font-lock-mode t)
+;(global-font-lock-mode t)
 
 ;; make sure spaces are used when indenting code
 (setq-default indent-tabs-mode nil)
@@ -93,10 +108,9 @@
 (setq-default doc-view-continuous 1)
 
 ;; highlight current line
-(global-hl-line-mode t)
+;(global-hl-line-mode t)
 
 ;; ido
-(require 'ido)
 (ido-mode t)
 
 ;; electric-pair
