@@ -27,6 +27,7 @@
     highlight-parentheses
     hy-mode
     ido-load-library
+    ipython
     jedi
     load-theme-buffer-local
     magit
