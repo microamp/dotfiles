@@ -9,6 +9,9 @@
 (define-key global-map (kbd "C-x s") 'multi-eshell)
 (define-key global-map (kbd "M-SPC") 'multi-eshell-switch)
 
+;; use indent-according-to-mode instead of py-indent-line
+(define-key (current-global-map) [remap py-indent-line] 'indent-according-to-mode)
+
 ;; Focus the new window after split
 (global-set-key "\C-x2" (lambda ()
                           (interactive)
