@@ -65,7 +65,8 @@
       (package-install p))))
 
 (require 'ido)
-(require 'bash-completion)
+(require 'highlight-parentheses)
+(require 'rainbow-delimiters)
 
 (setq emacs-dir "~/.emacs.d")
 (setq custom-lib-dir "elisp")
@@ -77,9 +78,6 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
-
-;; turn on auto completion for bash
-(bash-completion-setup)
 
 ;; browse url using conkeror
 (setq browse-url-browser-function 'browse-url-generic
@@ -101,10 +99,6 @@
 ;; remove trailing whitespace
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; hide password in shell mode
-(add-hook 'comint-output-filter-functions
-          'comint-watch-for-password-prompt)
-
 ;; doc-view-mode: continuous navigation via C-n/C-p
 (setq-default doc-view-continuous 1)
 
@@ -117,12 +111,38 @@
 ;; electric-pair
 (electric-pair-mode t)
 
+;; rainbow-delimiters
+(global-rainbow-delimiters-mode)
+
+;; highlight-parentheses
+(define-globalized-minor-mode global-highlight-parentheses-mode
+  highlight-parentheses-mode
+  (lambda ()
+    (highlight-parentheses-mode t)))
+(global-highlight-parentheses-mode t)
+
+;; map RET to newline-and-indent
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; map M-N to other-window
+(define-key global-map (kbd "M-N") 'other-window)
+(define-key global-map (kbd "M-P") 'previous-multiframe-window)
+
+;; focus the new window after split
+(global-set-key "\C-x2" (lambda ()
+                          (interactive)
+                          (split-window-below)
+                          (other-window 1)))
+(global-set-key "\C-x3" (lambda ()
+                          (interactive)
+                          (split-window-right)
+                          (other-window 1)))
+
 ;; load custom elisp libraries
 (add-to-list 'load-path (concat emacs-dir "/" custom-lib-dir))
 (load-library "theme-and-colours")
 (load-library "chat")
 (load-library "mail")
-(load-library "parens")
+(load-library "shell")
 (load-library "python")
 (load-library "lisp")
-(load-library "keybindings")
