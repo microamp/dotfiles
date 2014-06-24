@@ -16,7 +16,8 @@
       (kill-buffer "*Completions*")))
   output)
 
-(add-hook 'comint-preoutput-filter-functions 'delete-completion-window-buffer)
+(add-hook 'comint-preoutput-filter-functions
+          'delete-completion-window-buffer)
 
 ;; clear shell when C-l
 (defun clear-shell ()
@@ -24,7 +25,8 @@
   (let ((comint-buffer-maximum-size 0))
     (comint-truncate-buffer)))
 
-(define-key shell-mode-map (kbd "C-l") 'clear-shell)
+(add-hook 'eshell-mode-hook
+          (lambda nil (define-key shell-mode-map (kbd "C-l") 'clear-shell)))
 
 ;; map C-x s to open (multi-)eshell
 (define-key global-map (kbd "C-x s") 'multi-eshell)
