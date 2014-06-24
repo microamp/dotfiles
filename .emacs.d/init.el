@@ -140,9 +140,9 @@
 
 ;; load custom elisp libraries
 (add-to-list 'load-path (concat emacs-dir "/" custom-lib-dir))
-(load-library "theme-and-colours")
-(load-library "chat")
-(load-library "mail")
-(load-library "shell")
-(load-library "python")
-(load-library "lisp")
+(load-library "microamp-colours")
+(load-library "microamp-chat")
+(load-library "microamp-mail")
+(load-library "microamp-shell")
+(load-library "microamp-python")
+(load-library "microamp-lisp")
