@@ -29,4 +29,4 @@
 ;(add-hook 'mpc-mode-hook
 ;          (lambda nil (load-theme-buffer-local 'tango (current-buffer))))
 
-(provide 'theme-and-colours)
+(provide 'microamp-colours)

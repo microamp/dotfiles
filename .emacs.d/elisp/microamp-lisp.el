@@ -29,4 +29,4 @@
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'nrepl-mode-hook 'paredit-mode)
 
-(provide 'lisp)
+(provide 'microamp-lisp)

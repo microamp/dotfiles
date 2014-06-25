@@ -167,4 +167,4 @@
 ;; connect via rcirc
 ;(rcirc nil)
 
-(provide 'chat)
+(provide 'microamp-chat)

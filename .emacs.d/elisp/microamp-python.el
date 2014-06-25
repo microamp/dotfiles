@@ -26,15 +26,10 @@
 (setq jedi:complete-on-dot t)
 (jedi:install-server)
 
-;; use indent-according-to-mode instead of py-indent-line
-(define-key (current-global-map)
-  [remap py-indent-line]
-  'indent-according-to-mode)
-
 ;; python hooks
 (add-hook 'python-mode-hook 'fci-mode)
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 (add-hook 'python-mode-hook 'jedi:setup)
 (add-hook 'python-mode-hook 'linum-mode)
 
-(provide 'python)
+(provide 'microamp-python)

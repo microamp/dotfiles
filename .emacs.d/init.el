@@ -37,7 +37,6 @@
     multi-eshell
     paredit
     pkg-info
-    python-mode
     rainbow-delimiters
     rcirc-color
     rcirc-notify

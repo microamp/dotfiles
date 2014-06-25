@@ -32,4 +32,4 @@
 (define-key global-map (kbd "C-x s") 'multi-eshell)
 (define-key global-map (kbd "M-SPC") 'multi-eshell-switch)
 
-(provide 'shell)
+(provide 'microamp-shell)
