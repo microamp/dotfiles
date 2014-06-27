@@ -15,9 +15,8 @@
     clojure-mode
     color-theme
     color-theme-buffer-local
-    dash
-    deferred
     dired+
+    ein
     epc
     erc-hl-nicks
     fill-column-indicator
@@ -35,12 +34,11 @@
     monky
     mpc
     multi-eshell
+    org
     paredit
-    pkg-info
     rainbow-delimiters
     rcirc-color
     rcirc-notify
-    s
     starter-kit
     starter-kit-eshell
     starter-kit-lisp
