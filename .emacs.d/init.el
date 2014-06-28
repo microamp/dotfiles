@@ -16,6 +16,7 @@
     color-theme
     color-theme-buffer-local
     dired+
+    dired-rainbow
     ein
     epc
     erc-hl-nicks
@@ -43,6 +44,7 @@
     starter-kit-eshell
     starter-kit-lisp
     w3m
+    weather-metno
     zenburn-theme)
   "List of packages needs to be upgraded/installed at launch")
 
@@ -61,9 +63,12 @@
     (when (not (package-installed-p p))
       (package-install p))))
 
+(require 'dired+)
+(require 'dired-rainbow)
 (require 'ido)
 (require 'highlight-parentheses)
 (require 'rainbow-delimiters)
+(require 'weather-metno)
 
 (setq emacs-dir "~/.emacs.d")
 (setq custom-lib-dir "elisp")
@@ -82,6 +87,11 @@
 
 ;; dired+ for reusing dired buffers
 (toggle-diredp-find-file-reuse-dir t)
+
+;; dired-rainbow settings
+(dired-rainbow-define media "#BC8383" ("mp3" "mp4" "MP3" "MP4" "avi" "mpg" "flv" "ogg"))
+(dired-rainbow-define elisp "#DFAF8F" ("el"))
+(dired-rainbow-define python "#F0DFAF" ("py"))
 
 ;; disable automatic scrolling/re-centering
 (setq-default scroll-step 1
@@ -117,6 +127,11 @@
   (lambda ()
     (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
+
+;; weather-metno settings
+(setq weather-metno-location-name "Auckland, New Zealand"
+      weather-metno-location-latitude 41
+      weather-metno-location-longitude 174)
 
 ;; map RET to newline-and-indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
