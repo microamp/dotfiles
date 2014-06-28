@@ -1,6 +1,7 @@
 (require 'fill-column-indicator)
 (eval-after-load "flymake" '(require 'flymake-cursor))
 (eval-after-load "flymake" '(require 'flymake-python-pyflakes))
+(require 'ipython)
 (require 'jedi)
 
 ;; use IPython as default shell
