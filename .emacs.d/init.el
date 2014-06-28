@@ -88,7 +88,7 @@
               scroll-margin 0)
 
 ;; turn on font-lock mode to colour text in certain modes
-;(global-font-lock-mode t)
+(global-font-lock-mode t)
 
 ;; make sure spaces are used when indenting code
 (setq-default indent-tabs-mode nil)

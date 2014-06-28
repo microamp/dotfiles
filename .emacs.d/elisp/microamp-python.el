@@ -1,11 +1,7 @@
-(require 'python-mode)
 (require 'fill-column-indicator)
 (eval-after-load "flymake" '(require 'flymake-cursor))
 (eval-after-load "flymake" '(require 'flymake-python-pyflakes))
 (require 'jedi)
-
-;; turn on smart indentation
-(setq py-smart-indentation t)
 
 ;; use IPython as default shell
 (setq-default py-shell-name "ipython")
