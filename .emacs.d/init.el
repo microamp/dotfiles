@@ -130,8 +130,8 @@
 
 ;; weather-metno settings
 (setq weather-metno-location-name "Auckland, New Zealand"
-      weather-metno-location-latitude 41
-      weather-metno-location-longitude 174)
+      weather-metno-location-latitude 36.8404
+      weather-metno-location-longitude 174.7399)
 
 ;; map RET to newline-and-indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
