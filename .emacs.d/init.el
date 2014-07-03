@@ -35,6 +35,7 @@
     monky
     mpc
     multi-eshell
+    nrepl
     org
     paredit
     rainbow-delimiters

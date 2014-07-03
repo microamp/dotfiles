@@ -1,5 +1,6 @@
 (require 'clojure-mode)
 (require 'cider)
+(require 'nrepl)
 (require 'paredit)
 
 ;; clojure/cider
