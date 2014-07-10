@@ -151,6 +151,18 @@
                           (split-window-right)
                           (other-window 1)))
 
+;; vi-style C-e/C-y
+(defun vi-style-c-e (n)
+  (interactive "p")
+  (scroll-up n))
+
+(defun vi-style-c-y (n)
+  (interactive "p")
+  (scroll-down n))
+
+(global-set-key "\M-n" 'vi-style-c-e)
+(global-set-key "\M-p" 'vi-style-c-y)
+
 ;; load custom elisp libraries
 (add-to-list 'load-path (concat emacs-dir "/" custom-lib-dir))
 (load-library "microamp-colours")

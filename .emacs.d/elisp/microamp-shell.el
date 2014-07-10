@@ -32,4 +32,10 @@
 (define-key global-map (kbd "C-x s") 'multi-eshell)
 (define-key global-map (kbd "M-SPC") 'multi-eshell-switch)
 
+;; preserve M-n/M-p
+(add-hook 'eshell-mode-hook
+          (lambda () (local-set-key (kbd "M-n") 'comint-next-input)))
+(add-hook 'eshell-mode-hook
+          (lambda () (local-set-key (kbd "M-p") 'comint-previous-input)))
+
 (provide 'microamp-shell)

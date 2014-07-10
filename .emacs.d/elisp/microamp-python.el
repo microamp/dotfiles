@@ -1,15 +1,15 @@
 (require 'fill-column-indicator)
 (eval-after-load "flymake" '(require 'flymake-cursor))
 (eval-after-load "flymake" '(require 'flymake-python-pyflakes))
-(require 'ipython)
+;(require 'ipython)
 (require 'jedi)
 
-;; use IPython as default shell
-(setq-default py-shell-name "ipython")
-
-;; switch to interpreter after executing code
-(setq py-shell-switch-buffers-on-execute-p t)
-(setq py-switch-buffers-on-execute-p t)
+;;; use IPython as default shell
+;(setq-default py-shell-name "ipython")
+;
+;;; switch to interpreter after executing code
+;(setq py-shell-switch-buffers-on-execute-p t)
+;(setq py-switch-buffers-on-execute-p t)
 
 ;; fill column indicator
 (setq-default fci-rule-column 79)
