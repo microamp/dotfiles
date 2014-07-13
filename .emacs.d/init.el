@@ -31,6 +31,7 @@
     jedi
     load-theme-buffer-local
     magit
+    merlin
     mew
     monky
     mpc
@@ -44,6 +45,8 @@
     starter-kit
     starter-kit-eshell
     starter-kit-lisp
+    tuareg
+    utop
     w3m
     weather-metno
     zenburn-theme)
@@ -163,6 +166,12 @@
 (global-set-key "\M-n" 'vi-style-c-e)
 (global-set-key "\M-p" 'vi-style-c-y)
 
+;; w3m keybindings
+(add-hook 'w3m-mode-hook
+          (lambda () (local-set-key (kbd "M-n") 'w3m-scroll-up)))
+(add-hook 'w3m-mode-hook
+          (lambda () (local-set-key (kbd "M-p") 'w3m-scroll-down)))
+
 ;; load custom elisp libraries
 (add-to-list 'load-path (concat emacs-dir "/" custom-lib-dir))
 (load-library "microamp-colours")
@@ -171,3 +180,4 @@
 (load-library "microamp-shell")
 (load-library "microamp-python")
 (load-library "microamp-lisp")
+(load-library "microamp-ocaml")
