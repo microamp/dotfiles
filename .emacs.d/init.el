@@ -17,6 +17,7 @@
     color-theme-buffer-local
     dired+
     dired-rainbow
+    dired-toggle-sudo
     ein
     epc
     erc-hl-nicks
