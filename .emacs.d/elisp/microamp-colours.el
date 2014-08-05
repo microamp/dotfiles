@@ -10,6 +10,8 @@
  '(hl-line ((t (:background "gray30"))))
  '(linum ((t (:background "black" :foreground "gray50")))))
 
+(set-cursor-color "#777777")  ;; cursor colour
+
 ;; use same theme/font for dired-mode
 (setq font-lock-maximum-decoration (quote ((dired-mode) (t . t))))
 

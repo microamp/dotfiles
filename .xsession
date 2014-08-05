@@ -6,14 +6,14 @@
 # Executed by xdm/gdm/kdm at login
 #
 
-# emacs daemon start
-emacs --daemon
-
-# mpd daemon start (if no other user instance exists)
-[ ! -s ~/.config/mpd/pid ] && mpd ~/.config/mpd/mpd.conf
+# mpd daemon
+mpd ~/.config/mpd/mpd.conf
 
 # urxvt daemon
 urxvtd -q -o -f
+
+# emacs daemon start
+#emacs --daemon
 
 /bin/bash --login -i ~/.xinitrc
 
