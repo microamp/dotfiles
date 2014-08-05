@@ -11,6 +11,6 @@ PS1='[\u@\h \W]\$ '
 alias i3lock="i3lock -c 5d7f8c"
 alias wifi="sudo wifi-menu"
 alias down="sudo shutdown -h now"
-alias emacs="emacsclient -t"
+alias emc="env TERM=rxvt-256color emacsclient -t"
 
 archey

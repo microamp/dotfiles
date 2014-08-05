@@ -6,9 +6,9 @@
 (load-theme 'zenburn t)
 
 ;; custom colours
-;(custom-set-faces
-; '(hl-line ((t (:background "gray25"))))
-; '(linum ((t (:background "black" :foreground "gray50")))))
+(custom-set-faces
+ '(hl-line ((t (:background "gray30"))))
+ '(linum ((t (:background "black" :foreground "gray50")))))
 
 ;; use same theme/font for dired-mode
 (setq font-lock-maximum-decoration (quote ((dired-mode) (t . t))))
