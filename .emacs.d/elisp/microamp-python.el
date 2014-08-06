@@ -13,7 +13,7 @@
 
 ;; fill column indicator
 (setq-default fci-rule-column 79)
-(setq-default fci-rule-color "yellow")
+(setq-default fci-rule-color "#F0DFAF")
 
 ;; flake8 linting
 (setq flymake-python-pyflakes-executable "flake8")

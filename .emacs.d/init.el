@@ -82,6 +82,8 @@
 (menu-bar-mode -1)  ;; hide menu bar
 (tool-bar-mode -1)  ;; hide tool bar
 
+(blink-cursor-mode t)  ;; make cursor blink
+
 (set-default-font "Terminus-8")  ;; default font
 
 (setq visible-bell nil)  ;; turn visible bell off
