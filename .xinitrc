@@ -13,9 +13,6 @@ fi
 
 xrdb -merge ~/.Xresources
 
-#xcompmgr -c &
-#compton &
-
 sh ~/.fehbg &
 
 # map caps to ctrl, rctrl to ralt (thinkpad x230), rwin to alt (filco)
@@ -35,5 +32,10 @@ xset b off
 xset +dpms
 xset dpms 0 0 300
 
-# powerdown: automatic load
-upower -e
+# mpd daemon
+mpd ~/.config/mpd/mpd.conf
+
+# urxvt daemon
+urxvtd -q -o -f
+
+exec i3
