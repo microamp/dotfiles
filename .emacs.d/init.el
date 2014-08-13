@@ -180,6 +180,12 @@
 (add-hook 'w3m-mode-hook
           (lambda () (local-set-key (kbd "M-p") 'w3m-scroll-down)))
 
+;; set tab width for go mode
+(add-hook 'go-mode-hook
+  (function
+   (lambda ()
+     (setq tab-width 4))))
+
 ;; load custom elisp libraries
 (add-to-list 'load-path (concat emacs-dir "/" custom-lib-dir))
 (load-library "microamp-colours")
