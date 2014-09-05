@@ -38,7 +38,7 @@
     monky
     mpc
     multi-eshell
-    nrepl
+    nodejs-repl
     org
     paredit
     rainbow-delimiters
@@ -48,6 +48,7 @@
     starter-kit-eshell
     starter-kit-lisp
     tuareg
+    twittering-mode
     utop
     w3m
     weather-metno
@@ -184,7 +185,7 @@
 (add-hook 'go-mode-hook
   (function
    (lambda ()
-     (setq tab-width 4))))
+     (setq tab-width 2))))
 
 ;; load custom elisp libraries
 (add-to-list 'load-path (concat emacs-dir "/" custom-lib-dir))
@@ -195,3 +196,4 @@
 (load-library "microamp-python")
 (load-library "microamp-lisp")
 (load-library "microamp-ocaml")
+(load-library "microamp-org")

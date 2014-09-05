@@ -38,4 +38,8 @@ mpd ~/.config/mpd/mpd.conf
 # urxvt daemon
 urxvtd -q -o -f
 
+# exports
+export GOPATH=/home/microamp/devel/projs/gocode
+export PATH=/home/microamp/bin:$PATH
+
 exec i3

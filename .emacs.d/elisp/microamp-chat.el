@@ -143,7 +143,7 @@
       '(("chat.freenode.net"
          :port 8002
          :nick "microamp"
-         :channels ("#emacs #clojure #hy"))))
+         :channels ("#emacs #clojure #hy #microamp"))))
 
 ;; don't print /away messages
 (defun rcirc-handler-301 (process cmd sender args)
