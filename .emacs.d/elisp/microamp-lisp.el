@@ -22,7 +22,7 @@
 (setq cider-repl-wrap-history t)
 (setq cider-repl-history-size 1000)  ; the default is 500
 
-;; paredit hooks for lisp
+;; hooks for various lisp modes
 (autoload 'enable-paredit-mode "paredit" t)
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)

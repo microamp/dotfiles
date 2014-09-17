@@ -51,7 +51,6 @@
     twittering-mode
     utop
     w3m
-    weather-metno
     zenburn-theme)
   "List of packages needs to be upgraded/installed at launch")
 
@@ -72,10 +71,9 @@
 
 (require 'dired+)
 (require 'dired-rainbow)
-(require 'ido)
 (require 'highlight-parentheses)
+(require 'ido)
 (require 'rainbow-delimiters)
-(require 'weather-metno)
 
 (setq emacs-dir "~/.emacs.d")
 (setq custom-lib-dir "elisp")
@@ -105,6 +103,8 @@
 (dired-rainbow-define media "#BC8383" ("mp3" "mp4" "MP3" "MP4" "avi" "mpg" "flv" "ogg"))
 (dired-rainbow-define elisp "#DFAF8F" ("el"))
 (dired-rainbow-define python "#F0DFAF" ("py"))
+(dired-rainbow-define clojure "#F0DFAF" ("clj"))
+(dired-rainbow-define cljs "#F0DFAF" ("cljs"))
 
 ;; disable automatic scrolling/re-centering
 (setq-default scroll-step 1
@@ -132,7 +132,7 @@
 (electric-pair-mode t)
 
 ;; rainbow-delimiters
-(global-rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 ;; highlight-parentheses
 (define-globalized-minor-mode global-highlight-parentheses-mode
@@ -140,11 +140,6 @@
   (lambda ()
     (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
-
-;; weather-metno settings
-(setq weather-metno-location-name "Auckland, New Zealand"
-      weather-metno-location-latitude 36.8404
-      weather-metno-location-longitude 174.7399)
 
 ;; map RET to newline-and-indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
@@ -189,11 +184,11 @@
 
 ;; load custom elisp libraries
 (add-to-list 'load-path (concat emacs-dir "/" custom-lib-dir))
-(load-library "microamp-colours")
 (load-library "microamp-chat")
-(load-library "microamp-mail")
-(load-library "microamp-shell")
-(load-library "microamp-python")
+(load-library "microamp-colours")
 (load-library "microamp-lisp")
+(load-library "microamp-mail")
 (load-library "microamp-ocaml")
 (load-library "microamp-org")
+(load-library "microamp-python")
+(load-library "microamp-shell")
