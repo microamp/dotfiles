@@ -11,6 +11,7 @@
 (defvar packages-list
   '(auto-complete
     bash-completion
+    bookmark+
     cider
     clojure-mode
     color-theme
@@ -25,6 +26,8 @@
     flymake-cursor
     flymake-easy
     flymake-python-pyflakes
+    help-fns+
+    highlight
     highlight-parentheses
     hy-mode
     go-mode
@@ -41,9 +44,12 @@
     nodejs-repl
     org
     paredit
+    racket-mode
     rainbow-delimiters
     rcirc-color
     rcirc-notify
+    ruby-mode
+    sml-mode
     starter-kit
     starter-kit-eshell
     starter-kit-lisp
@@ -86,6 +92,8 @@
 (set-default-font "Terminus-8")  ;; default font
 
 (setq visible-bell nil)  ;; turn visible bell off
+
+(add-hook 'dired-mode-hook '(lambda () (dired-hide-details-mode -1)))  ;; show details
 
 ;; always use utf-8
 (set-terminal-coding-system 'utf-8)
@@ -144,7 +152,7 @@
 ;; map RET to newline-and-indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
-;; map M-N to other-window
+;; map M-N/M-P to other-window
 (define-key global-map (kbd "M-N") 'other-window)
 (define-key global-map (kbd "M-P") 'previous-multiframe-window)
 
@@ -192,3 +200,16 @@
 (load-library "microamp-org")
 (load-library "microamp-python")
 (load-library "microamp-shell")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(hl-line ((t (:background "gray30"))))
+ '(linum ((t (:background "black" :foreground "gray50")))))
