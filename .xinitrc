@@ -40,6 +40,7 @@ urxvtd -q -o -f
 
 # exports
 export GOPATH=/home/microamp/devel/projs/gocode
+export GOBIN=/home/microamp/devel/projs/gocode/bin
 export PATH=/home/microamp/bin:$PATH
 
 exec i3

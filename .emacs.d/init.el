@@ -26,14 +26,18 @@
     flymake-cursor
     flymake-easy
     flymake-python-pyflakes
+    go-autocomplete
+    go-eldoc
+    go-mode
+    go-play
     help-fns+
     highlight
     highlight-parentheses
     hy-mode
-    go-mode
     ido-load-library
     ipython
     jedi
+    lfe-mode
     load-theme-buffer-local
     magit
     merlin
@@ -152,19 +156,30 @@
 ;; map RET to newline-and-indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
-;; map M-N/M-P to other-window
+;; map keybindings for switching to next/previous windows
 (define-key global-map (kbd "M-N") 'other-window)
 (define-key global-map (kbd "M-P") 'previous-multiframe-window)
+(define-key global-map (kbd "C-x n") 'other-window)
+(define-key global-map (kbd "C-x p") 'previous-multiframe-window)
 
-;; focus the new window after split
-(global-set-key "\C-x2" (lambda ()
-                          (interactive)
-                          (split-window-below)
-                          (other-window 1)))
-(global-set-key "\C-x3" (lambda ()
-                          (interactive)
-                          (split-window-right)
-                          (other-window 1)))
+;; map C-. to set-mark-command
+(define-key global-map (kbd "C-.") 'set-mark-command)
+
+;; alternative bindings to C-x 0, C-x 1, C-x 2 and C-x 3
+(define-key global-map (kbd "C-x q") 'delete-window)
+(define-key global-map (kbd "C-x l") 'delete-other-windows)
+(define-key global-map (kbd "C-x w") 'split-window-below)
+(define-key global-map (kbd "C-x v") 'split-window-right)
+
+ ;; focus the new window after split
+;(global-set-key "\C-x2" (lambda ()
+;                          (interactive)
+;                          (split-window-below)
+;                          (other-window 1)))
+;(global-set-key "\C-x3" (lambda ()
+;                          (interactive)
+;                          (split-window-right)
+;                          (other-window 1)))
 
 ;; vi-style C-e/C-y
 (defun vi-style-c-e (n)
@@ -200,12 +215,14 @@
 (load-library "microamp-org")
 (load-library "microamp-python")
 (load-library "microamp-shell")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks"))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

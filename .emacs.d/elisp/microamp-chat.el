@@ -4,10 +4,10 @@
 
 ;; server list
 (setq rcirc-server-alist
-      '(("chat.freenode.net"
-         :port 8002
-         :nick "microamp"
-         :channels ("#emacs #clojure #hy"))
+      '(;("chat.freenode.net"
+        ; :port 8002
+        ; :nick "microamp"
+        ; :channels ("#emacs #clojure #hy"))
         ("localhost"
          :port 6667
          :nick "microamp"
