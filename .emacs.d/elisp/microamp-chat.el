@@ -1,3 +1,4 @@
+;; ***** irc *****
 (require 'rcirc)
 (eval-after-load 'rcirc '(require 'rcirc-color))
 (eval-after-load 'rcirc '(require 'rcirc-notify))
@@ -32,7 +33,17 @@
 ;; turn on notification tracking
 (rcirc-track-minor-mode 1)
 
-;; connect via rcirc
+;; C-c I to connect to irc
 (global-set-key (kbd "C-c I") 'irc)
+
+;; ***** jabber (google chat) *****
+(require 'jabber)
+
+(setq jabber-account-list
+      '(("sangho.nah@gmail.com"
+         (:password . nil)
+         (:network-server . "talk.google.com")
+         (:port . 5223)
+         (:connection-type . ssl))))
 
 (provide 'microamp-chat)
