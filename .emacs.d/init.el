@@ -36,6 +36,7 @@
     hy-mode
     ido-load-library
     ipython
+    jabber
     jedi
     lfe-mode
     load-theme-buffer-local
@@ -221,7 +222,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks"))
+ '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
+ '(jabber-account-list
+   (quote
+    (("sangho.nah@gmail.com"
+      (:network-server . "talk.google.com")
+      (:port . 5223)
+      (:connection-type . ssl))))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
