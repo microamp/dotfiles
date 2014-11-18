@@ -100,6 +100,9 @@
 
 (add-hook 'dired-mode-hook '(lambda () (dired-hide-details-mode -1)))  ;; show details
 
+;; /usr/local/bin added to exec-path
+(setq exec-path (append exec-path '("/usr/local/bin")))
+
 ;; always use utf-8
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
