@@ -5,8 +5,8 @@
 # Executed by startx (run your window manager from here)
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
-  for f in /etc/X11/xinit/xinitrc.d/*; do
-    [ -x "$f" ] && . "$f"
+  for f in /etc/X11/xinit/xinitrc.d/*; [ -x "$f" ]
+    do && . "$f"
   done
   unset f
 fi
@@ -37,10 +37,5 @@ mpd ~/.config/mpd/mpd.conf
 
 # urxvt daemon
 urxvtd -q -o -f
-
-# exports
-export GOPATH=/home/microamp/devel/projs/gocode
-export GOBIN=/home/microamp/devel/projs/gocode/bin
-export PATH=/home/microamp/bin:$PATH
 
 exec i3
