@@ -1,0 +1,24 @@
+[general]
+accounts = Gmail
+maxsyncaccounts = 3
+# Load the function that will decrypt the password
+pythonfile = ~/.offlineimap.py
+
+[Account Gmail]
+localrepository = Local
+remoterepository = Remote
+
+[Repository Local]
+type = Maildir
+localfolders = ~/Maildir
+
+[Repository Remote]
+type = IMAP
+remotehost = imap.gmail.com
+remoteuser = sangho.nah@gmail.com
+ssl = yes
+maxconnections = 1
+realdelete = no
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+# Decrypt and read the encrypted password
+remotepasseval = get_pass()
