@@ -16,13 +16,14 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 
-# Run `git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell` for installation
-# (https://github.com/chriskempson/base16-shell)
+# Run `git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell` for installation (https://github.com/chriskempson/base16-shell)
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
+base16_grayscale-light
+
 # Git-aware prompt (https://github.com/jimeh/git-aware-prompt)
-prompt GITAWAREPROMPT=$HOME/src/git-aware-prompt
+export GITAWAREPROMPT=$HOME/src/git-aware-prompt
 source "${GITAWAREPROMPT}/main.sh"
 export PS1="\u@\h \W \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
@@ -31,7 +32,5 @@ export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
 if [ -f $HOME/bin/hub.bash_completion.sh ]; then
     . $HOME/bin/hub.bash_completion.sh
 fi
-
-base16_grayscale-light
 
 archey
