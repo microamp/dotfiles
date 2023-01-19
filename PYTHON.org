@@ -1,0 +1,86 @@
+* Python Setup
+
+** Dependencies
+
+- ~python3-pip~
+
+  #+begin_src sh
+    apt install python3-pip
+  #+end_src
+
+- ~python3-venv~
+
+  #+begin_src sh
+    apt install python3-venv
+  #+end_src
+
+** Virtual Environment under ~$HOME/.local~
+
+0. Make sure ~$HOME/.local/bin~ is in the ~$PATH~.
+
+   #+begin_src sh
+     echo $PATH
+   #+end_src
+
+1. Set up a new Python virtual environment under ~$HOME/.local~.
+
+   #+begin_src sh
+     python3 -m venv ~/.local --system-site-packages
+     source ~/.local/bin/activate
+   #+end_src
+
+2. Make sure ~pip~ points to ~$HOME/.local/bin/pip~.
+
+   #+begin_src sh
+     which pip
+   #+end_src
+
+3. Upgrade ~pip~.
+
+   #+begin_src sh
+     pip install --upgrade pip
+   #+end_src
+
+4. (Optional) Install other dependencies.
+
+   #+begin_src sh
+     pip install black ipython isort pyright ruff
+   #+end_src
+
+** Project-Specific Settings
+
+#+begin_src sh
+  cd /path/to/your/python/project/
+  python -m venv .venv
+#+end_src
+
+#+begin_src sh
+  source .venv/bin/activate
+  pip install -U pip
+  pip install -U -r requirements.txt
+  pip install -U -r requirements.dev.txt
+#+end_src
+
+#+begin_src sh
+  cat .dir-locals.el
+#+end_src
+
+e.g.
+
+#+begin_src emacs-lisp
+  ((python-mode . ((devdocs-current-docs . ("python~3.9" "django~4.2"))
+                   (python-shell-virtualenv-root . "/path/to/your/python/project/.venv"))))
+#+end_src
+
+(Optional)
+
+#+begin_src sh
+  cat pyrightconfig.json
+#+end_src
+
+#+begin_src json
+  {
+    "venvPath": ".",
+    "venv": ".venv"
+  }
+#+end_src

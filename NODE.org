@@ -1,0 +1,54 @@
+* Node.js Setup
+
+** Dependencies
+
+- ~nodejs~
+
+  #+begin_src sh
+    apt install nodejs
+  #+end_src
+
+- ~npm~
+
+  #+begin_src sh
+    apt install npm
+  #+end_src
+
+** Run Executables with ~npx~
+
+#+begin_src sh
+  cd $HOME
+#+end_src
+
+#+begin_src sh
+  npm install -D typescript-language-server
+#+end_src
+
+#+begin_src sh
+  npx typescript-language-server
+#+end_src
+
+#+begin_src text
+  Usage: typescript-language-server [options]
+
+  Options:
+    -V, --version           output the version number
+    --stdio                 use stdio
+    --log-level <logLevel>  A number indicating the log level (4 = log, 3 = info, 2 = warn, 1 = error). Defaults to
+                            `2`.
+    -h, --help              display help for command
+#+end_src
+
+** Language Server in Node.js
+
+1. Install LSP servers.
+
+   #+begin_src sh
+     npm install -D \
+         bash-language-server \
+         dockerfile-language-server-nodejs \
+         typescript-language-server \
+         yaml-language-server
+   #+end_src
+
+2. Update ~eglot-server-programs~ accordingly to include the ~npx~ command in the beginning.
