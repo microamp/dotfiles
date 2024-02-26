@@ -127,18 +127,23 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # Go paths
+PATH="/usr/local/go/bin:$PATH"
 GOPATH="$HOME"
 GOBIN="$GOPATH/bin"
 PATH="$GOBIN:$PATH"
 
 # Node paths
 PATH="$HOME/.npm-packages/node_modules/.bin:$PATH"
+PATH="$HOME/node_modules/.bin:$PATH"
+
+# Python paths
+PATH="$HOME/.venv/bin:$PATH"
 
 # man xkeyboard-config
 # 1. CapsLock as Ctrl
 # 2. Right Ctrl as Right Alt
 # gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'altwin:swap_lalt_lwin', 'ctrl:rctrl_ralt']"
-gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'ctrl:rctrl_ralt']"
+# gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'ctrl:rctrl_ralt']"
 
 # dependency: gammastep
 # gammastep -b 0.9:0.7 -l -36.848461:174.763336 &
@@ -152,5 +157,7 @@ stty -ixon
 # enable command completion for aws
 complete -C '/usr/local/bin/aws_completer' aws
 
-pfetch
-. "$HOME/.cargo/env"
+# pfetch
+# . "$HOME/.cargo/env"
+
+export GPG_TTY=$(tty)

@@ -42,4 +42,4 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier'
 
 # enable forward search (C-s) in terminals
 # stty -ixon
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
