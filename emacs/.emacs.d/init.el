@@ -76,6 +76,9 @@
 (global-set-key (kbd "M-n") #'forward-paragraph)
 (global-set-key (kbd "M-p") #'backward-paragraph)
 
+;; (set-frame-parameter (selected-frame) 'alpha '(80))
+;; (add-to-list 'default-frame-alist '(alpha . (80)))
+
 (use-package ansi-color
   :ensure nil
   :hook ((compilation-filter . ansi-color-compilation-filter)))
@@ -124,7 +127,8 @@
 
 (use-package display-line-numbers
   :ensure nil
-  :hook ((prog-mode . display-line-numbers-mode)))
+  :hook ((prog-mode . display-line-numbers-mode)
+         (restclient-mode . display-line-numbers-mode)))
 
 (use-package ediff-init
   :ensure nil
@@ -133,16 +137,25 @@
 
 (use-package eglot
   :ensure nil
-  :hook ((js-ts-mode . eglot-ensure)
+  :hook ((dockerfile-mode . eglot-ensure)
+         (js-mode . eglot-ensure)
          (python-base-mode . eglot-ensure)
-         (terraform-mode . eglot-ensure))
+         (sh-mode . eglot-ensure)
+         (terraform-mode . eglot-ensure)
+         (typescript-mode . eglot-ensure)
+         (yaml-mode . eglot-ensure))
   :bind (:map eglot-mode-map
 	 ("C-c r v" . eglot-rename))
   :custom
   (eglot-autoshutdown t)
   :config
+  (add-to-list 'eglot-server-programs '(dockerfile-mode . ("docker-langserver" "--stdio")))
+  (add-to-list 'eglot-server-programs '(js-mode . ("typescript-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs '(python-base-mode . ("pylsp")))
-  (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-ls" "serve"))))
+  (add-to-list 'eglot-server-programs '(sh-mode . ("bash-language-server" "start")))
+  (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-ls" "serve")))
+  (add-to-list 'eglot-server-programs '(typescript-mode . ("typescript-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs '(yaml-mode . ("yaml-language-server" "--stdio"))))
 
 (use-package eldoc
   :ensure nil
@@ -234,8 +247,8 @@
 
 (use-package js
   :ensure nil
-  :mode ("\\.js\\'" . js-ts-mode)
-  :bind (:map js-ts-mode-map
+  :mode ("\\.js\\'" . js-mode)
+  :bind (:map js-mode-map
          ("M-." . xref-find-definitions)))
 
 (use-package midnight
@@ -285,8 +298,13 @@
          ("M-L" . org-metaright)
          ("M-n" . org-next-visible-heading)
          ("M-p" . org-previous-visible-heading))
+  :hook ((org-mode . visual-line-mode))
   :custom
   (org-clock-sound "~/Downloads/bell-ringing-05.wav")
+  (org-export-with-author nil)
+  ;; (org-export-with-tags nil)
+  (org-export-with-title nil)
+  (org-startup-with-inline-images t)
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages '((dot . t)
@@ -332,8 +350,8 @@
 ;; python -m pip install --user --upgrade ruff
 (use-package python
   :ensure nil
-  :mode ("\\.py\\'" . python-ts-mode)
-  :bind (:map python-ts-mode-map
+  :mode ("\\.py\\'" . python-mode)
+  :bind (:map python-mode-map
 	 ("C-c C-n" . python-nav-forward-statement)
 	 ("C-c C-p" . python-nav-backward-statement)
          ("C-c C-c" . python-shell-send-statement)
@@ -362,9 +380,6 @@
   :ensure nil
   :hook ((after-init . repeat-mode))
   :config
-  (define-key other-window-repeat-map "l" #'delete-other-windows)
-  (define-key other-window-repeat-map "L" #'delete-window)
-
   (defvar flymake-goto-next-prev-error-repeat-map
     (let ((map (make-sparse-keymap)))
       (define-key map "n" #'flymake-goto-next-error)
@@ -562,7 +577,8 @@
 
 ;; Font
 
-(set-frame-font "Geist Mono:pixelsize=15" nil t)
+;; (set-frame-font "IBM Plex Mono:pixelsize=14" nil t)
+(set-frame-font "monospace:pixelsize=13" nil t)
 
 ;; Dependencies: packages
 
@@ -571,9 +587,20 @@
   :after python
   :hook ((python-base-mode . blacken-mode)))
 
+(use-package bm
+  :ensure t
+  :bind (("C-M-;" . bm-toggle)
+         ("C-M->" . bm-next)
+         ("C-M-<" . bm-previous)))
+
+(use-package browse-at-remote
+  :ensure t
+  :bind (("C-c m w" . browse-at-remote)))
+
 ;; M-x customize-variable chatgpt-shell-openai-key
 (use-package chatgpt-shell
   :ensure t
+  :hook ((chatgpt-shell-mode . visual-line-mode))
   :commands (chatgpt-shell)
   :init
   (global-set-key (kbd "C-h M-g") #'chatgpt-shell)
@@ -597,7 +624,7 @@
          ("M-s L" . consult-line-multi))
   :custom
   (consult-async-min-input 3)
-  (consult-ripgrep-args "rg --null --hidden --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --line-number --no-column"))
+  (consult-ripgrep-args "rg --null --hidden --line-buffered --color=never --max-columns=1000 --path-separator / --smart-case --no-heading --line-number --no-column"))
 
 (use-package consult-org-roam
   :ensure t
@@ -688,7 +715,11 @@
   (advice-add 'magit-status :before
 	      #'(lambda (&rest args) (save-buffer)))
   (use-package magit-section
-    :ensure t))
+    :ensure t)
+  (use-package transient
+    :ensure t
+    :custom
+    (transient-default-level 5)))
 
 (use-package marginalia
   :ensure t
@@ -726,13 +757,13 @@
              nodejs-repl-send-region
              nodejs-repl-switch-to-repl)
   :init
-  (add-hook 'js-ts-mode-hook
+  (add-hook 'js-mode-hook
             #'(lambda ()
-                (define-key js-ts-mode-map (kbd "C-c C-c") #'nodejs-repl-send-line)
-                (define-key js-ts-mode-map (kbd "C-c C-e") #'nodejs-repl-send-last-expression)
-                (define-key js-ts-mode-map (kbd "C-c C-k") #'nodejs-repl-send-buffer)
-                (define-key js-ts-mode-map (kbd "C-c C-r") #'nodejs-repl-send-region)
-                (define-key js-ts-mode-map (kbd "C-c C-z") #'nodejs-repl-switch-to-repl))))
+                (define-key js-mode-map (kbd "C-c C-c") #'nodejs-repl-send-line)
+                (define-key js-mode-map (kbd "C-c C-e") #'nodejs-repl-send-last-expression)
+                (define-key js-mode-map (kbd "C-c C-k") #'nodejs-repl-send-buffer)
+                (define-key js-mode-map (kbd "C-c C-r") #'nodejs-repl-send-region)
+                (define-key js-mode-map (kbd "C-c C-z") #'nodejs-repl-switch-to-repl))))
 
 (use-package orderless
   :ensure t
@@ -742,12 +773,17 @@
   :init
   (setq completion-category-defaults nil))
 
+(use-package org-present
+  :ensure t
+  :bind (:map org-mode-map
+         ("C-c M-p" . org-present)))
+
 (use-package org-roam
   :ensure t
   :custom
-  (org-roam-directory "~/zettel")
+  (org-roam-directory "~/.emacs.d/notes")
   (org-roam-completion-everywhere t)
-  (org-roam-dailies-directory "~/zettel/dailies")
+  (org-roam-dailies-directory "~/.emacs.d/notes/dailies")
   :bind (("C-c j l" . org-roam-buffer-toggle)
 	 ("C-c j j" . org-roam-node-find)
 	 ("C-c j i" . org-roam-node-insert)
@@ -765,7 +801,9 @@
 (use-package org-roam-ui
   :ensure t
   :after org-roam
-  :bind (("C-c j u" . org-roam-ui-mode)))
+  :bind (("C-c j u" . org-roam-ui-mode))
+  :custom
+  (org-roam-ui-follow t))
 
 (use-package ox-pandoc
   :ensure t
@@ -778,7 +816,7 @@
 
 (use-package prettier-js
   :ensure t
-  :hook ((js-ts-mode . prettier-js-mode)))
+  :hook ((js-mode . prettier-js-mode)))
 
 (use-package python-isort
   :ensure t
@@ -849,6 +887,10 @@
 (use-package terraform-mode
   :ensure t
   :mode ("\\.tf\\'" . terraform-mode))
+
+(use-package typescript-mode
+  :ensure t
+  :mode ("\\.ts\\'" . typescript-mode))
 
 (use-package vertico
   :ensure t
