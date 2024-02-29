@@ -300,7 +300,7 @@
          ("M-p" . org-previous-visible-heading))
   :hook ((org-mode . visual-line-mode))
   :custom
-  (org-clock-sound "~/Downloads/bell-ringing-05.wav")
+  ;; (org-clock-sound "~/Downloads/bell-ringing-05.wav")
   (org-export-with-author nil)
   ;; (org-export-with-tags nil)
   (org-export-with-title nil)
