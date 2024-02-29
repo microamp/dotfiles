@@ -36,10 +36,10 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier'
 # gammastep -b 0.9:0.7 -l -36.848461:174.763336 &
 
 # https://sr.ht/~kennylevinsen/wlsunset/
-# wlsunset -l 36.8509 -L 174.7645
+# wlsunset -l 36.8509 -L 174.7645 &
 
 # echo 8250 > /sys/class/backlight/intel_backlight/brightness
 
 # enable forward search (C-s) in terminals
 # stty -ixon
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"

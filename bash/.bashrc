@@ -152,5 +152,5 @@ stty -ixon
 # enable command completion for aws
 complete -C '/usr/local/bin/aws_completer' aws
 
-pfetch
-. "$HOME/.cargo/env"
+# pfetch
+# . "$HOME/.cargo/env"
