@@ -133,6 +133,7 @@ PATH="$GOBIN:$PATH"
 
 # Node paths
 PATH="$HOME/.npm-packages/node_modules/.bin:$PATH"
+PATH="$HOME/node_modules/.bin:$PATH"
 
 # man xkeyboard-config
 # 1. CapsLock as Ctrl
