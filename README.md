@@ -173,33 +173,16 @@ Codename:       jammy
     apt install wl-clipboard
     ```
 
--   `chatgpt-shell`
-
-    ```sh
-    mkdir -p ~/.emacs.d/src/xenodium
-    cd ~/.emacs.d/src/xenodium
-    git clone git@github.com:xenodium/chatgpt-shell.git
-    ```
-
--   `chat.el`
-
-    ```sh
-    mkdir -p ~/.emacs.d/src/iwahbe
-    cd ~/.emacs.d/src/iwahbe
-    git clone git@github.com:iwahbe/chat.el.git
-    ```
-
-
 <a id="org266a307"></a>
 
 ## QuickStart
 
 ```sh
-stow bash
-stow config
-stow emacs
-stow tmux
-stow vim
+stow -vv bash -t ~/
+stow -vv config -t ~/
+stow -vv emacs -t ~/
+stow -vv tmux -t ~/
+stow -vv vim -t ~/
 ```
 
 

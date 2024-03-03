@@ -116,30 +116,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
-# Go paths
-GOPATH="$HOME"
-GOBIN="$GOPATH/bin"
-PATH="$GOBIN:$PATH"
-
-# Node paths
-PATH="$HOME/.npm-packages/node_modules/.bin:$PATH"
-PATH="$HOME/node_modules/.bin:$PATH"
-
 # man xkeyboard-config
 # 1. CapsLock as Ctrl
 # 2. Right Ctrl as Right Alt
 # gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'altwin:swap_lalt_lwin', 'ctrl:rctrl_ralt']"
-gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'ctrl:rctrl_ralt']"
+# gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'ctrl:rctrl_ralt']"
 
 # dependency: gammastep
 # gammastep -b 0.9:0.7 -l -36.848461:174.763336 &
@@ -154,4 +135,5 @@ stty -ixon
 complete -C '/usr/local/bin/aws_completer' aws
 
 # pfetch
-# . "$HOME/.cargo/env"
+
+source <(kubectl completion bash)

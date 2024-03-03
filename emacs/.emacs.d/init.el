@@ -53,6 +53,7 @@
               scroll-conservatively 1000
               scroll-down-aggressively 1
               scroll-margin 3
+              require-final-newline t
               scroll-preserve-screen-position t
               scroll-step 0
               tab-always-indent 'complete
@@ -79,6 +80,17 @@
 ;; (set-frame-parameter (selected-frame) 'alpha '(80))
 ;; (add-to-list 'default-frame-alist '(alpha . (80)))
 
+(defun nsh/kill-pwd ()
+  (interactive)
+  (let ((cwd (pwd))
+        (dir-prefix "Directory "))
+    (when (string-prefix-p dir-prefix cwd)
+      (let ((cwd (substring cwd (length dir-prefix))))
+        (kill-new cwd)
+        (message (format "Copied to kill ring: %s" cwd))))))
+
+(global-set-key (kbd "C-c C-SPC") #'nsh/kill-pwd)
+
 (use-package ansi-color
   :ensure nil
   :hook ((compilation-filter . ansi-color-compilation-filter)))
@@ -95,7 +107,7 @@
 (use-package comint
   :ensure nil
   :bind (:map comint-mode-map
-         ("C-l" . comint-clear-buffer))
+              ("C-l" . comint-clear-buffer))
   :custom
   (comint-move-point-for-output t)
   (comint-scroll-to-bottom-on-input t)
@@ -138,6 +150,7 @@
 (use-package eglot
   :ensure nil
   :hook ((dockerfile-mode . eglot-ensure)
+         (go-mode . eglot-ensure)
          (js-mode . eglot-ensure)
          (python-base-mode . eglot-ensure)
          (sh-mode . eglot-ensure)
@@ -145,17 +158,17 @@
          (typescript-mode . eglot-ensure)
          (yaml-mode . eglot-ensure))
   :bind (:map eglot-mode-map
-	 ("C-c r v" . eglot-rename))
+	      ("C-c r v" . eglot-rename))
   :custom
   (eglot-autoshutdown t)
   :config
-  (add-to-list 'eglot-server-programs '(dockerfile-mode . ("docker-langserver" "--stdio")))
-  (add-to-list 'eglot-server-programs '(js-mode . ("typescript-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '(python-base-mode . ("pylsp")))
-  (add-to-list 'eglot-server-programs '(sh-mode . ("bash-language-server" "start")))
+  (add-to-list 'eglot-server-programs '(dockerfile-mode . ("npx" "docker-langserver" "--stdio")))
+  (add-to-list 'eglot-server-programs '(js-mode . ("npx" "typescript-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs '(python-base-mode . ("pyright-langserver" "--stdio")))
+  (add-to-list 'eglot-server-programs '(sh-mode . ("npx" "bash-language-server" "start")))
   (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-ls" "serve")))
-  (add-to-list 'eglot-server-programs '(typescript-mode . ("typescript-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '(yaml-mode . ("yaml-language-server" "--stdio"))))
+  (add-to-list 'eglot-server-programs '(typescript-mode . ("npx" "typescript-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs '(yaml-mode . ("npx" "yaml-language-server" "--stdio"))))
 
 (use-package eldoc
   :ensure nil
@@ -165,7 +178,7 @@
 (use-package elisp-mode
   :ensure nil
   :bind (:map emacs-lisp-mode-map
-         ("C-c C-k" . eval-buffer)))
+              ("C-c C-k" . eval-buffer)))
 
 (use-package eshell
   :ensure nil
@@ -186,9 +199,9 @@
 (use-package flymake
   :ensure nil
   :bind (:map prog-mode-map
-         ("C-c f" . flymake-mode)
-         ("C-c ! n" . flymake-goto-next-error)
-         ("C-c ! p" . flymake-goto-prev-error))
+              ("C-c f" . flymake-mode)
+              ("C-c ! n" . flymake-goto-next-error)
+              ("C-c ! p" . flymake-goto-prev-error))
   :config
   (add-hook 'eglot-managed-mode-hook
             (lambda () (cond ((derived-mode-p 'python-base-mode)
@@ -226,12 +239,12 @@
 (use-package isearch
   :ensure nil
   :bind (:map minibuffer-local-isearch-map
-         ("M-/" . isearch-complete-edit)
-         :map isearch-mode-map
-         ("C-g" . isearch-cancel)
-         ("M-/" . isearch-complete)
-	 ("M-j" . isearch-yank-symbol-or-char)
-	 ("M-n" . isearch-yank-symbol-or-char))
+              ("M-/" . isearch-complete-edit)
+              :map isearch-mode-map
+              ("C-g" . isearch-cancel)
+              ("M-/" . isearch-complete)
+	      ("M-j" . isearch-yank-symbol-or-char)
+	      ("M-n" . isearch-yank-symbol-or-char))
   :custom
   (isearch-allow-scroll 'unlimited)
   (isearch-lazy-count t)
@@ -249,7 +262,7 @@
   :ensure nil
   :mode ("\\.js\\'" . js-mode)
   :bind (:map js-mode-map
-         ("M-." . xref-find-definitions)))
+              ("M-." . xref-find-definitions)))
 
 (use-package midnight
   :ensure nil
@@ -290,14 +303,14 @@
 (use-package org
   :ensure nil
   :bind (:map org-mode-map
-         ("C-c ;" . nil)
-         ("C-j" . org-return-indent)
-         ("M-H" . org-metaleft)
-         ("M-J" . org-metadown)
-         ("M-K" . org-metaup)
-         ("M-L" . org-metaright)
-         ("M-n" . org-next-visible-heading)
-         ("M-p" . org-previous-visible-heading))
+              ("C-c ;" . nil)
+              ("C-j" . org-return-indent)
+              ("M-H" . org-metaleft)
+              ("M-J" . org-metadown)
+              ("M-K" . org-metaup)
+              ("M-L" . org-metaright)
+              ("M-n" . org-next-visible-heading)
+              ("M-p" . org-previous-visible-heading))
   :hook ((org-mode . visual-line-mode))
   :custom
   ;; (org-clock-sound "~/Downloads/bell-ringing-05.wav")
@@ -314,13 +327,13 @@
   :ensure nil
   :bind-keymap ("C-c p" . project-prefix-map)
   :bind (:map project-prefix-map
-         ("q" . consult-ripgrep)
-         ("s" . consult-ripgrep)))
+              ("q" . consult-ripgrep)
+              ("s" . consult-ripgrep)))
 
 (use-package pulse
   :ensure nil
   :custom
-  (pulse-delay 0.045)
+  (pulse-delay 0.06)
   :init
   (defun nsh/pulse (&rest args)
     (pulse-momentary-highlight-one-line (point)))
@@ -352,17 +365,17 @@
   :ensure nil
   :mode ("\\.py\\'" . python-mode)
   :bind (:map python-mode-map
-	 ("C-c C-n" . python-nav-forward-statement)
-	 ("C-c C-p" . python-nav-backward-statement)
-         ("C-c C-c" . python-shell-send-statement)
-         ("C-c C-f" . python-shell-send-defun)
-         ("C-c C-k" . python-shell-send-buffer)
-         ("C-c C-r" . python-shell-send-region)
-         ("C-c C-z" . run-python)
-         ("M-[" . python-nav-backward-defun)
-         ("M-]" . python-nav-forward-defun)
-         :map inferior-python-mode-map
-         ("C-l" . comint-clear-buffer))
+	      ("C-c C-n" . python-nav-forward-statement)
+	      ("C-c C-p" . python-nav-backward-statement)
+              ("C-c C-c" . python-shell-send-statement)
+              ("C-c C-f" . python-shell-send-defun)
+              ("C-c C-k" . python-shell-send-buffer)
+              ("C-c C-r" . python-shell-send-region)
+              ("C-c C-z" . run-python)
+              ("M-[" . python-nav-backward-defun)
+              ("M-]" . python-nav-forward-defun)
+              :map inferior-python-mode-map
+              ("C-l" . comint-clear-buffer))
   :custom
   (python-flymake-command '("ruff" "--quiet" "--stdin-filename=stdin" "-"))
   (python-indent-guess-indent-offset-verbose nil)
@@ -510,8 +523,9 @@
   :bind (("M-c" . capitalize-dwim)
 	 ("M-l" . downcase-dwim)
 	 ("M-u" . upcase-dwim))
-  :config
-  (add-to-list 'write-file-functions #'delete-trailing-whitespace))
+  ;; :config
+  ;; (add-to-list 'write-file-functions #'delete-trailing-whitespace)
+  )
 
 (use-package tooltip
   :ensure nil
@@ -522,21 +536,21 @@
   :ensure nil
   :init
   (setq treesit-language-source-alist
-   '((bash . ("https://github.com/tree-sitter/tree-sitter-bash"))
-     (c . ("https://github.com/tree-sitter/tree-sitter-c"))
-     (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp"))
-     (css . ("https://github.com/tree-sitter/tree-sitter-css"))
-     (go . ("https://github.com/tree-sitter/tree-sitter-go"))
-     (html . ("https://github.com/tree-sitter/tree-sitter-html"))
-     (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript"))
-     (json . ("https://github.com/tree-sitter/tree-sitter-json"))
-     (ocaml . ("https://github.com/tree-sitter/tree-sitter-ocaml" "ocaml/src" "ocaml"))
-     (python . ("https://github.com/tree-sitter/tree-sitter-python"))
-     (php . ("https://github.com/tree-sitter/tree-sitter-php"))
-     (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "typescript/src" "typescript"))
-     (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby"))
-     (rust . ("https://github.com/tree-sitter/tree-sitter-rust"))
-     (toml . ("https://github.com/tree-sitter/tree-sitter-toml"))))
+        '((bash . ("https://github.com/tree-sitter/tree-sitter-bash"))
+          (c . ("https://github.com/tree-sitter/tree-sitter-c"))
+          (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp"))
+          (css . ("https://github.com/tree-sitter/tree-sitter-css"))
+          (go . ("https://github.com/tree-sitter/tree-sitter-go"))
+          (html . ("https://github.com/tree-sitter/tree-sitter-html"))
+          (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript"))
+          (json . ("https://github.com/tree-sitter/tree-sitter-json"))
+          (ocaml . ("https://github.com/tree-sitter/tree-sitter-ocaml" "ocaml/src" "ocaml"))
+          (python . ("https://github.com/tree-sitter/tree-sitter-python"))
+          (php . ("https://github.com/tree-sitter/tree-sitter-php"))
+          (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "typescript/src" "typescript"))
+          (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby"))
+          (rust . ("https://github.com/tree-sitter/tree-sitter-rust"))
+          (toml . ("https://github.com/tree-sitter/tree-sitter-toml"))))
   (defun nsh/treesit-install-all-languages ()
     (interactive)
     (let ((langs (mapcar 'car treesit-language-source-alist)))
@@ -564,8 +578,8 @@
 (use-package winner-mode
   :ensure nil
   :bind (:map winner-mode-map
-         ("C-c h" . winner-undo)
-         ("C-c l" . winner-redo))
+              ("C-c h" . winner-undo)
+              ("C-c l" . winner-redo))
   :init
   (winner-mode 1))
 
@@ -582,10 +596,8 @@
 
 ;; Dependencies: packages
 
-(use-package blacken
-  :ensure t
-  :after python
-  :hook ((python-base-mode . blacken-mode)))
+(use-package apheleia
+  :ensure t)
 
 (use-package bm
   :ensure t
@@ -623,7 +635,8 @@
          ("M-s M-l" . consult-line)
          ("M-s L" . consult-line-multi))
   :custom
-  (consult-async-min-input 3)
+  (consult-async-min-input 2)
+  (consult-async-refresh-delay 0.2)
   (consult-ripgrep-args "rg --null --hidden --line-buffered --color=never --max-columns=1000 --path-separator / --smart-case --no-heading --line-number --no-column"))
 
 (use-package consult-org-roam
@@ -689,6 +702,23 @@
   :ensure t
   :hook ((sql-mode . flymake-sqlfluff-load)))
 
+;; (use-package format-all
+;;   :ensure t
+;;   :commands format-all-mode
+;;   :hook ((prog-mode . format-all-mode)
+;;          (fmo-mode . format-all-ensure-formatter))
+;;   :config
+;;   (use-package fmo-mode
+;;     :ensure t
+;;     :custom
+;;     (fmo-ensure-formatters t)
+;;     :init
+;;     (message "loading fmo-mode")
+;;     (fmo-mode nil)))
+
+(use-package go-mode
+  :ensure t)
+
 (use-package jinja2-mode
   :ensure t)
 
@@ -725,7 +755,7 @@
   :ensure t
   :after vertico
   :bind (:map minibuffer-local-map
-	 ("M-A" . marginalia-cycle))
+	      ("M-A" . marginalia-cycle))
   :custom
   (marginalia-align 'right)
   :init
@@ -776,7 +806,7 @@
 (use-package org-present
   :ensure t
   :bind (:map org-mode-map
-         ("C-c M-p" . org-present)))
+              ("C-c M-p" . org-present)))
 
 (use-package org-roam
   :ensure t
@@ -814,21 +844,17 @@
 (use-package password-generator
   :ensure t)
 
-(use-package prettier-js
-  :ensure t
-  :hook ((js-mode . prettier-js-mode)))
-
-(use-package python-isort
-  :ensure t
-  :after python
-  :hook ((python-base-mode . python-isort-on-save-mode)))
+;; (use-package python-isort
+;;   :ensure t
+;;   :after python
+;;   :hook ((python-base-mode . python-isort-on-save-mode)))
 
 (use-package pyvenv
   :ensure t
   :after python
   :bind (:map python-base-mode-map
-         ("C-c v a" . pyvenv-activate)
-         ("C-c v d" . pyvenv-deactivate)))
+              ("C-c v a" . pyvenv-activate)
+              ("C-c v d" . pyvenv-deactivate)))
 
 (use-package restclient
   :ensure t

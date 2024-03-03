@@ -1,0 +1,48 @@
+* Python Setup
+
+** Dependencies
+
+- ~python3-pip~
+
+  #+begin_src sh
+    apt install python3-pip
+  #+end_src
+
+- ~python3-venv~
+
+  #+begin_src sh
+    apt install python3-venv
+  #+end_src
+
+** Virtual Environment under ~$HOME/.local~
+
+0. Make sure ~$HOME/.local/bin~ is in the ~$PATH~.
+
+   #+begin_src sh
+     echo $PATH
+   #+end_src
+
+1. Set up a new Python virtual environment under ~$HOME/.local~.
+
+   #+begin_src sh
+     python3 -m venv ~/.local --system-site-packages
+     source ~/.local/bin/activate
+   #+end_src
+
+2. Make sure ~pip~ points to ~$HOME/.local/bin/pip~.
+
+   #+begin_src sh
+     which pip
+   #+end_src
+
+3. Upgrade ~pip~.
+
+   #+begin_src sh
+     pip install --upgrade pip
+   #+end_src
+
+4. (Optional) Install other dependencies.
+
+   #+begin_src sh
+     pip install python-lsp-server ipython black isort
+   #+end_src

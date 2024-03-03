@@ -26,6 +26,20 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# set PATH so it includes /usr/local/go/bin if it exists
+if [ -d "/usr/local/go/bin" ] ; then
+    PATH="/usr/local/go/bin:$PATH"
+fi
+
+# Go paths
+GOPATH="$HOME"
+GOBIN="$GOPATH/bin"
+PATH="$GOBIN:$PATH"
+
+# Node paths
+PATH="$HOME/.npm-packages/node_modules/.bin:$PATH"
+PATH="$HOME/node_modules/.bin:$PATH"
+
 # man xkeyboard-config
 # 1. CapsLock as Ctrl
 # 2. Right Ctrl as Right Alt
@@ -43,3 +57,5 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier'
 # enable forward search (C-s) in terminals
 # stty -ixon
 # . "$HOME/.cargo/env"
+
+export GPG_TTY=$(tty)
