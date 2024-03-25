@@ -716,6 +716,15 @@
 ;;     (message "loading fmo-mode")
 ;;     (fmo-mode nil)))
 
+(use-package gcmh
+  :ensure t
+  :diminish gcmh-mode
+  :hook ((after-init . gcmh-mode))
+  :custom
+  (gcmh-high-cons-threshold 500000000)
+  (gcmh-low-cons-threshold 100000000)
+  (gcmh-verbose t))
+
 (use-package go-mode
   :ensure t)
 
