@@ -44,7 +44,12 @@ PATH="$HOME/node_modules/.bin:$PATH"
 # 1. CapsLock as Ctrl
 # 2. Right Ctrl as Right Alt
 # gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'altwin:swap_lalt_lwin', 'ctrl:rctrl_ralt']"
+# ThinkPad:
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'ctrl:rctrl_ralt']"
+# HHKB2:
+# gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier', 'altwin:swap_lalt_lwin']"
+
+gsettings set org.gnome.desktop.interface gtk-key-theme "Emacs"
 
 # dependency: gammastep
 # gammastep -b 0.9:0.7 -l -36.848461:174.763336 &

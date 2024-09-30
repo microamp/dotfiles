@@ -63,12 +63,19 @@ exec swayidle -w \
 # Read `man 5 sway-input` for more information about this section.
 
 input "type:keyboard" {
-    # xkb_options caps:ctrl_modifier,altwin:swap_lalt_lwin,ctrl:rctrl_ralt
+    # ThinkPad:
     xkb_options caps:ctrl_modifier,ctrl:rctrl_ralt
+    # HHKB2:
+    # xkb_options caps:ctrl_modifier,altwin:swap_lalt_lwin
 }
 
 input "type:touchpad" {
     tap enabled
+    pointer_accel 0.25
+}
+
+input "type:pointer" {
+    pointer_accel -0.5 # set mouse sensitivity (between -1 and 1)
 }
 
 ### Key bindings
@@ -210,6 +217,10 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bindsym $mod+Shift+x exec swaylock -f
+
+# Screenshot (dependencies: grim, slurp)
+bindsym $mod+Print exec grim -g "$(slurp)"
+bindsym $mod+Shift+Print exec grim -g "$(slurp)" - | wl-copy
 
 #
 # Status Bar:
